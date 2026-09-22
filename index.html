@@ -8,34 +8,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body data-page="home">
 
-    <header>
-        <h1>MYMOVE</h1>
-
+    <header class="site-header">
+        <a href="index.html" class="logo">MYMOVE</a>
         <nav>
-            <a href="#">How It Works</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="move.html" class="nav-button">Find My Move</a>
         </nav>
     </header>
 
-    <main>
+    <main class="container">
 
-        <h2>Find Your Move</h2>
+        <section class="hero">
+            <div class="media-placeholder">Image/Video</div>
 
-        <div>
-            Image/Video
-        </div>
+            <div>
+                <h1>Find Your Move</h1>
+                <p>Find movement that fits your time, your mood, and your location.</p>
+                <a href="move.html" class="button">Get Started</a>
+            </div>
+        </section>
 
-        <p>
-            Find movement that fits your time, your mood, and your location.
-        </p>
+        <section id="how-it-works" class="info-row">
+            <div class="info-box">
+                <h2>Time</h2>
+                <p>Tell us how many minutes you have.</p>
+            </div>
+            <div class="info-box">
+                <h2>Feeling</h2>
+                <p>Tell us how you feel right now.</p>
+            </div>
+            <div class="info-box">
+                <h2>Place</h2>
+                <p>Tell us where you are.</p>
+            </div>
+        </section>
 
-        <a href="move.html">Get Started</a>
+        <section id="about">
+            <h2>About</h2>
+            <p>MYMOVE suggests quick, simple movement that fits into your day.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Contact details coming soon.</p>
+        </section>
 
     </main>
 
+    <script src="script.js"></script>
 </body>
 
 </html>

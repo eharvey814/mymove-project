@@ -8,18 +8,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body data-page="movement">
 
-    <header>
-        <h1>MYMOVE</h1>
+    <header class="site-header">
+        <a href="index.html" class="logo">MYMOVE</a>
+        <nav>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="move.html" class="nav-button">Find My Move</a>
+        </nav>
     </header>
 
-    <main>
-        <h2>Your Movement</h2>
+    <main class="container">
 
-        <p>Movement instructions will appear here.</p>
+        <p id="missingData" class="hidden">
+            No move selected yet. <a href="move.html">Answer the three questions</a> to get one.
+        </p>
+
+        <section id="activity" class="two-column hidden">
+
+            <div>
+                <h1 id="activityTitle">Movement</h1>
+                <div class="media-placeholder">Video</div>
+                <h2>Steps</h2>
+                <p>Check off each step as you finish it.</p>
+                <ol id="stepList" class="step-list"></ol>
+            </div>
+
+            <div class="timer-panel">
+                <h2>Time</h2>
+                <p id="timerDisplay" class="timer" aria-live="polite">00:00</p>
+                <p id="timerMessage" role="status"></p>
+
+                <div class="button-row">
+                    <button type="button" id="startTimer" class="button secondary">Start</button>
+                    <button type="button" id="pauseTimer" class="button secondary">Pause</button>
+                    <button type="button" id="resetTimer" class="button secondary">Reset</button>
+                </div>
+
+                <button type="button" id="endMove" class="button">End Move</button>
+            </div>
+
+        </section>
+
     </main>
 
+    <script src="script.js"></script>
 </body>
 
 </html>

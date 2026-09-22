@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Here's Your Move | MYMOVE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="suggestion">
+
+    <header class="site-header">
+        <a href="index.html" class="logo">MYMOVE</a>
+        <nav>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="move.html" class="nav-button">Find My Move</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <h1>Here's Your Move!</h1>
+
+        <!-- Shown if someone lands here without answering the questions -->
+        <p id="missingData" class="hidden">
+            No move selected yet. <a href="move.html">Answer the three questions</a> to get one.
+        </p>
+
+        <section id="suggestion" class="two-column hidden">
+            <div>
+                <div class="media-placeholder">Photo/Preview</div>
+                <p id="moveDescription"></p>
+            </div>
+
+            <div>
+                <h2 id="moveTitle"></h2>
+                <ul class="details">
+                    <li>Time: <span id="moveTime"></span></li>
+                    <li>Place: <span id="movePlace"></span></li>
+                    <li>Level: <span id="moveLevel"></span></li>
+                </ul>
+            </div>
+        </section>
+
+        <p id="suggestionMessage" role="status"></p>
+
+        <div class="button-row">
+            <a href="movement.html" id="letsGo" class="button">Let's Go</a>
+            <button type="button" id="tryAnother" class="button secondary">Try Another</button>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

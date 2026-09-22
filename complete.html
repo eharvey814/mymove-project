@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nice Work | MYMOVE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="complete">
+
+    <header class="site-header">
+        <a href="index.html" class="logo">MYMOVE</a>
+        <nav>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="move.html" class="nav-button">Find My Move</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <h1>Nice Work!</h1>
+
+        <p id="missingData" class="hidden">
+            No finished moves yet. <a href="move.html">Find a move</a> to get started.
+        </p>
+
+        <section id="summary" class="hidden">
+            <p id="summaryTitle"></p>
+
+            <div class="info-row">
+                <div class="info-box">
+                    <h2>Duration</h2>
+                    <p id="summaryDuration"></p>
+                </div>
+                <div class="info-box">
+                    <h2>Steps</h2>
+                    <p id="summarySteps"></p>
+                </div>
+                <div class="info-box">
+                    <h2>Place</h2>
+                    <p id="summaryPlace"></p>
+                </div>
+            </div>
+
+            <h2>How did it feel?</h2>
+            <div class="options" data-group="rating">
+                <button type="button" class="option" data-value="Great" aria-pressed="false">Great</button>
+                <button type="button" class="option" data-value="Okay" aria-pressed="false">Okay</button>
+                <button type="button" class="option" data-value="Tough" aria-pressed="false">Tough</button>
+            </div>
+            <p id="ratingMessage" role="status"></p>
+
+            <h2>My Moves This Session</h2>
+            <ul id="historyList" class="history"></ul>
+        </section>
+
+        <div class="button-row">
+            <a href="move.html" class="button">Find Another Move</a>
+            <a href="index.html" class="button secondary">Home</a>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
