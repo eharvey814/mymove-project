@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tell Us About You | MYMOVE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="container">
+
+        <header>
+            <h1>MYMOVE</h1>
+            <p>Tell Us About YOU</p>
+        </header>
+
+        <section class="question">
+            <h2>How much time do you have?</h2>
+
+            <div class="options">
+                <button class="option time" data-value="5">5 minutes</button>
+                <button class="option time" data-value="10">10 minutes</button>
+                <button class="option time" data-value="20">20 minutes</button>
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>How are you feeling?</h2>
+
+            <div class="options">
+                <button class="option mood" data-value="energized">Energized</button>
+                <button class="option mood" data-value="stressed">Stressed</button>
+                <button class="option mood" data-value="tired">Tired</button>
+                <button class="option mood" data-value="unmotivated">Unmotivated</button>
+            </div>
+        </section>
+
+        <section class="question">
+            <h2>Where are you?</h2>
+
+            <div class="options">
+                <button class="option location" data-value="home">Home</button>
+                <button class="option location" data-value="work">Work</button>
+                <button class="option location" data-value="outside">Outside</button>
+            </div>
+        </section>
+
+        <button id="findMove">Find My Move</button>
+
+        <section id="result" class="result hidden">
+            <h2>Your Move</h2>
+            <h3 id="moveTitle"></h3>
+            <p id="moveDescription"></p>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
+
