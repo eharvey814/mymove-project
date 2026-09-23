@@ -1,10 +1,3 @@
-/* =========================================================
-   MYMOVE - script.js
-   One script shared by every page. Each page's <body> has a
-   data-page attribute, and only that page's code runs.
-   ========================================================= */
-
-
 /* ---------- 1. Move data ----------
    Each move lists the moods and places it fits.
    Duration comes from the user's time choice, not the move. */
@@ -90,7 +83,7 @@ const moves = [
     }
 ];
 
-// Friendly labels for values stored in data-value attributes
+// Labels for values stored in data-value attributes
 const placeLabels = { home: "Home", outside: "Outside", work: "Work/School", gym: "Gym" };
 
 
@@ -229,7 +222,7 @@ function initSuggestionPage() {
 }
 
 
-/* ---------- 5. Movement page (activity.html) ---------- */
+/* ---------- 5. Activity page (activity.html) ---------- */
 
 function initMovementPage() {
     const preferences = loadData("preferences");
