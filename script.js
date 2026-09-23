@@ -158,7 +158,7 @@ function showMissingData(contentId) {
 }
 
 
-/* ---------- 3. Preferences page (move.html) ---------- */
+/* ---------- 3. Preferences page (preferences.html) ---------- */
 
 function initPreferencesPage() {
     const choices = { time: null, mood: null, place: null };
@@ -229,7 +229,7 @@ function initSuggestionPage() {
 }
 
 
-/* ---------- 5. Movement page (movement.html) ---------- */
+/* ---------- 5. Movement page (activity.html) ---------- */
 
 function initMovementPage() {
     const preferences = loadData("preferences");
@@ -243,19 +243,11 @@ function initMovementPage() {
     document.getElementById("activity").classList.remove("hidden");
     document.getElementById("activityTitle").textContent = move.title;
 
-    // Build the step checklist
+        // Build the numbered step list
     const stepList = document.getElementById("stepList");
-    move.steps.forEach((step, index) => {
+    move.steps.forEach(step => {
         const item = document.createElement("li");
-        const label = document.createElement("label");
-        const checkbox = document.createElement("input");
-
-        checkbox.type = "checkbox";
-        checkbox.id = "step" + index;
-        label.htmlFor = checkbox.id;
-        label.textContent = step;
-
-        item.append(checkbox, label);
+        item.textContent = step;
         stepList.appendChild(item);
     });
 
@@ -306,13 +298,10 @@ function initMovementPage() {
     document.getElementById("endMove").addEventListener("click", () => {
         stopTimer();
 
-        const stepsDone = stepList.querySelectorAll("input:checked").length;
-
         const session = {
             title: move.title,
             secondsMoved: totalSeconds - remaining,
-            stepsDone: stepsDone,
-            stepsTotal: move.steps.length,
+            level: move.level,
             place: preferences.place,
             rating: null
         };
@@ -321,12 +310,12 @@ function initMovementPage() {
         history.push(session);
         saveData("history", history);
 
-        window.location.href = "complete.html";
+        window.location.href = "completion.html";
     });
 }
 
 
-/* ---------- 6. Completion page (complete.html) ---------- */
+/* ---------- 6. Completion page (completion.html) ---------- */
 
 function initCompletePage() {
     const history = loadData("history");
@@ -341,7 +330,7 @@ function initCompletePage() {
     document.getElementById("summary").classList.remove("hidden");
     document.getElementById("summaryTitle").textContent = "You finished " + latest.title + ".";
     document.getElementById("summaryDuration").textContent = formatTime(latest.secondsMoved);
-    document.getElementById("summarySteps").textContent = latest.stepsDone + " of " + latest.stepsTotal;
+    document.getElementById("summaryLevel").textContent = latest.level;
     document.getElementById("summaryPlace").textContent = placeLabels[latest.place];
 
     // Save the "How did it feel?" answer to the latest session
