@@ -80,6 +80,12 @@ const moves = [
         moods: ["energized", "motivated"], places: ["home"],
         description: "Put on your favorite songs and keep moving until time is up.",
         steps: ["Pick 2-3 upbeat songs", "Move however feels good", "Keep moving between songs", "Slow down with a stretch at the end"]
+    },
+    {
+        id: 14, title: "Fresh Air Stretch", level: "Easy",
+        moods: ["low-energy"], places: ["outside"],
+        description: "Step outside for light stretching and slow, deep breaths.",
+        steps: ["Stand tall and take 5 deep breaths", "Reach both arms overhead", "Gentle side bends", "Slow walk for a few minutes", "Finish with a calf and hamstring stretch"]
     }
 ];
 
@@ -347,7 +353,17 @@ function initCompletePage() {
         });
     }
 
-    showHistory();
+        showHistory();
+
+    // Show or hide the session history list
+    const toggleButton = document.getElementById("toggleHistory");
+    const historyList = document.getElementById("historyList");
+
+    toggleButton.addEventListener("click", () => {
+        const isHidden = historyList.classList.toggle("hidden");
+        toggleButton.textContent = isHidden ? "View My Moves" : "Hide My Moves";
+        toggleButton.setAttribute("aria-expanded", String(!isHidden));
+    });
 }
 
 
