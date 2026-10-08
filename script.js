@@ -242,7 +242,7 @@ function initMovementPage() {
     document.getElementById("activity").classList.remove("hidden");
     document.getElementById("activityTitle").textContent = move.title;
 
-        // Build the numbered step list
+    // Build the numbered step list
     const stepList = document.getElementById("stepList");
     move.steps.forEach(step => {
         const item = document.createElement("li");
@@ -257,6 +257,9 @@ function initMovementPage() {
 
     const display = document.getElementById("timerDisplay");
     const timerMessage = document.getElementById("timerMessage");
+    const endButton = document.getElementById("endMove");
+    endButton.disabled = true;
+    timerMessage.textContent = "Press Start to begin your move.";
     display.textContent = formatTime(remaining);
 
     function stopTimer() {
@@ -267,7 +270,8 @@ function initMovementPage() {
     document.getElementById("startTimer").addEventListener("click", () => {
         if (intervalId || remaining === 0) return; // already running or finished
 
-        timerMessage.textContent = "";
+        timerMessage.textContent = "Timer started.";
+        endButton.disabled = false;
         intervalId = setInterval(() => {
             remaining--;
             display.textContent = formatTime(remaining);
@@ -290,11 +294,17 @@ function initMovementPage() {
         stopTimer();
         remaining = totalSeconds;
         display.textContent = formatTime(remaining);
-        timerMessage.textContent = "";
+        timerMessage.textContent = "Timer reset. Press Start to begin.";
+        endButton.disabled = true;
     });
 
     // End Move: save this session to history, then go to the completion page
-    document.getElementById("endMove").addEventListener("click", () => {
+    endButton.addEventListener("click", () => {
+        if (totalSeconds - remaining === 0) {
+            timerMessage.textContent = "Start the timer before ending your move.";
+            return;
+        }
+
         stopTimer();
 
         const session = {
@@ -353,7 +363,7 @@ function initCompletePage() {
         });
     }
 
-        showHistory();
+    showHistory();
 
     // Show or hide the session history list
     const toggleButton = document.getElementById("toggleHistory");

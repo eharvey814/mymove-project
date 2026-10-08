@@ -83,6 +83,11 @@ input:focus-visible {
     outline-offset: 2px;
 }
 
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Layout helpers */
 .hero,
 .two-column {
