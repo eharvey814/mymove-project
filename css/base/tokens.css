@@ -1,0 +1,65 @@
+/* Design tokens: every color, font, size, and radius comes from the MYMOVE brand guide.
+   Change a value here and it updates everywhere. */
+:root {
+  /* Brand palette */
+  --color-dusty-blue: #a5c0c2;      /* primary: panels, chips, icons */
+  --color-terracotta: #e08e72;      /* accent: selected state only */
+  --color-soft-cream: #f1e8d8;      /* background */
+  --color-charcoal: #222a2a;        /* text and anchor */
+  --color-deep-teal: #2f6b6e;       /* buttons, interactive icons */
+  --color-deep-terracotta: #a4502f; /* links, eyebrows, emphasis */
+  --color-white: #ffffff;
+
+  /* Tints derived from the palette */
+  --color-blue-tint: #dce7e8;
+  --color-terracotta-tint: #f6d8cc;
+  --color-terracotta-light: #ebb19d;
+  --color-cream-dark: #e4d7c1;
+  --color-line: #ddd0b9;
+  --color-text-muted: #56605f;
+  --color-footer-muted: #9aa3a2;
+
+  /* Type */
+  --font-heading: "Roboto", Arial, sans-serif;
+  --font-body: "Montserrat", Arial, sans-serif;
+  --text-display: clamp(2.875rem, 2rem + 3.6vw, 4.75rem); /* 46 → 76px */
+  --text-h1: clamp(2.125rem, 1.6rem + 2vw, 3.25rem);       /* 34 → 52px */
+  --text-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);       /* 28 → 40px */
+  --text-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);       /* 20 → 24px */
+  --text-body: 1rem;
+  --text-lead: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-small: 0.875rem;
+  --text-caption: 0.8125rem;
+
+  /* Spacing (8px system) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-10: 5rem;
+  --section-space: clamp(3.5rem, 2.5rem + 4vw, 6.25rem);
+
+  /* Shape and depth */
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 999px;
+  --shadow-soft: 0 8px 24px rgba(34, 42, 42, 0.1);
+  --shadow-lift: 0 14px 36px rgba(34, 42, 42, 0.16);
+
+  /* Layout */
+  --container-max: 75rem; /* 1200px */
+  --gutter: 1.25rem;      /* 20px phone margins */
+  --header-height: 4.5rem;
+}
+
+@media (min-width: 700px) {
+  :root { --gutter: 2.5rem; --header-height: 4.75rem; }
+}
+@media (min-width: 1100px) {
+  :root { --gutter: 7.5rem; --header-height: 5.5rem; }
+}

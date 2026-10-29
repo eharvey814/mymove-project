@@ -1,0 +1,50 @@
+/* =========================================================
+   MYMOVE stylesheet
+   ---------------------------------------------------------
+   Organization: layered folders + BEM naming
+     base/        design tokens, reset, typography (global defaults)
+     layout/      page-level structure (containers, sections, grids)
+     components/  reusable blocks named with BEM (.block__element--modifier)
+     pages/       small, page-specific arrangements of components
+     utilities/   single-purpose helpers (loaded last so they win)
+   To add a page: create pages/<page>.css and import it below.
+   To add a component: create components/<component>.css and import it below.
+   Mobile first: base styles target phones, then
+     @media (min-width: 700px)  tablet
+     @media (min-width: 1100px) desktop
+   ========================================================= */
+
+@import url("base/tokens.css");
+@import url("base/reset.css");
+@import url("base/typography.css");
+
+@import url("layout/layout.css");
+
+@import url("components/button.css");
+@import url("components/icon.css");
+@import url("components/site-header.css");
+@import url("components/site-footer.css");
+@import url("components/card.css");
+@import url("components/input-card.css");
+@import url("components/chip.css");
+@import url("components/option.css");
+@import url("components/stepper.css");
+@import url("components/media.css");
+@import url("components/move-card.css");
+@import url("components/cta-band.css");
+@import url("components/step-list.css");
+@import url("components/timer.css");
+@import url("components/note.css");
+@import url("components/stat.css");
+@import url("components/history.css");
+
+@import url("pages/home.css");
+@import url("pages/preferences.css");
+@import url("pages/suggestion.css");
+@import url("pages/activity.css");
+@import url("pages/completion.css");
+@import url("pages/how-it-works.css");
+@import url("pages/about.css");
+@import url("pages/contact.css");
+
+@import url("utilities/utilities.css");

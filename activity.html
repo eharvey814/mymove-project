@@ -1,61 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movement | MYMOVE</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movement | MYMOVE</title>
+  <meta name="description" content="MYMOVE suggests quick, simple movement that fits your time, your mood, and where you are.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/animations.js" defer></script>
 </head>
-
-<body data-page="movement">
-
-    <header class="site-header">
-        <a href="index.html" class="logo">MYMOVE</a>
-        <nav>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="preferences.html" class="nav-button">Find My Move</a>
-        </nav>
-    </header>
-
-    <main class="container">
-
-        <p id="missingData" class="hidden">
-            No move selected yet. <a href="preferences.html">Answer the three questions</a> to get one.
-        </p>
-
-        <section id="activity" class="two-column hidden">
-
-            <div>
-                <h1 id="activityTitle">Movement</h1>
-                <div class="media-placeholder">Video demo of the movement(s)
-                </div>
-                <p>Listen to your body and move within your comfort level. Stop if you feel pain, dizziness, or shortness of breath.</p>
-                <h2>Steps</h2>
-                <ol id="stepList" class="step-list"></ol>
+<body data-page="activity">
+  <a class="visually-hidden" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="index.html"><img src="assets/logo.svg" alt="MYMOVE home" width="154" height="35"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list" id="site-menu">
+          <li><a class="site-nav__link" href="how-it-works.html">How It Works</a></li>
+          <li><a class="site-nav__link" href="about.html">About</a></li>
+          <li><a class="site-nav__link" href="contact.html">Contact</a></li>
+          <li class="site-nav__cta"><a class="button button--primary button--small button--block" href="preferences.html">Find My Move</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary button--small site-header__cta" href="preferences.html">Find My Move</a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg><span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="stepper" aria-label="Progress">
+        <p class="stepper__summary"><strong>STEP 3 OF 4</strong><span>Move</span></p>
+        <ol class="stepper__list">
+          <li class="stepper__step stepper__step--done"><span class="stepper__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span><span class="stepper__label">Tell us</span></li><li class="stepper__step stepper__step--done"><span class="stepper__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span><span class="stepper__label">Your move</span></li><li class="stepper__step stepper__step--current" aria-current="step"><span class="stepper__dot">3</span><span class="stepper__label">Move</span></li><li class="stepper__step stepper__step--upcoming"><span class="stepper__dot">4</span><span class="stepper__label">Done</span></li>
+        </ol>
+      </nav>
+      <div class="note note--info is-hidden" id="missingData">
+        <h2 class="card__title">No move selected yet.</h2>
+        <p>Answer three quick questions and we’ll find a move for you.</p>
+        <a class="button button--primary" href="preferences.html">Find My Move <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"></use></svg></a>
+      </div>
+      <div class="activity mt-4 is-hidden" id="activity">
+        <div class="activity__main">
+          <div class="activity__video">
+            <div class="media__video" id="videoPlayer">
+              <canvas class="media__gif" id="stepCanvas" width="800" height="450" role="img" aria-label="Animated figure demonstrating the current step"></canvas>
+              <button type="button" class="media__start" id="panelStart"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#play"></use></svg><span>Press Start to begin</span></button>
+              <span class="media__label"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#play"></use></svg><span id="videoLabel">Loading…</span></span>
+              <span class="media__count" id="repCount" aria-live="polite" hidden></span>
+              <span class="media__countdown" id="stepCountdown" hidden><span class="media__countdown-num" id="stepCountdownNum"></span><span class="media__countdown-label" id="stepCountdownLabel">seconds left</span></span>
             </div>
-
-            <div class="timer-panel">
-                <h2>Time</h2>
-                <p id="timerDisplay" class="timer" aria-live="polite">00:00</p>
-                <p id="timerMessage" role="status"></p>
-
-                <div class="button-row">
-                    <button type="button" id="startTimer" class="button secondary">Start</button>
-                    <button type="button" id="pauseTimer" class="button secondary">Pause</button>
-                    <button type="button" id="resetTimer" class="button secondary">Reset</button>
-                </div>
-
-                <button type="button" id="endMove" class="button">End Move</button>
+            <p class="media__credit" id="videoCredit" aria-live="polite"></p>
+          </div>
+          <div class="activity__heading activity__title-row">
+            <h1 id="activityTitle">Movement</h1>
+            <span class="activity__step-count" id="stepCount"></span>
+          </div>
+          <p class="note activity__note"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#wind"></use></svg><span>Listen to your body and move within your comfort level. Take breaks as needed, and stop if you feel any pain.</span></p>
+          <ol class="step-list step-list--live activity__steps" id="stepList" aria-label="Steps"></ol>
+          <div class="activity__end activity__end--bottom">
+            <button type="button" class="button button--dark button--large button--block" data-action="end-move">End Move</button>
+            <p class="timer__note">We’ll save the time you actually moved.</p>
+          </div>
+        </div>
+        <aside class="activity__side" aria-label="Timer">
+          <section class="timer">
+            <p class="timer__label">Time remaining</p>
+            <div class="timer__ring" id="timerScrub" role="slider" tabindex="0" aria-label="Timer position. Drag, or use the arrow keys, to rewind or skip ahead" aria-valuemin="0" aria-valuemax="600" aria-valuenow="0">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="timer__track" cx="50" cy="50" r="44"></circle>
+                <circle class="timer__progress" id="timerRing" cx="50" cy="50" r="44"></circle>
+                <circle class="timer__knob" id="timerKnob" cx="94" cy="50" r="2.4"></circle>
+              </svg>
+              <div class="timer__readout">
+                <span class="timer__time" id="timerDisplay">00:00</span>
+                <span class="timer__total" id="timerTotal"></span>
+              </div>
             </div>
-
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
+            <div class="timer__controls">
+              <button type="button" class="timer__control" id="startTimer"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#play"></use></svg></span><span class="timer__control-label">Start</span></button>
+              <button type="button" class="timer__control" id="pauseTimer"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pause"></use></svg></span><span class="timer__control-label">Pause</span></button>
+              <button type="button" class="timer__control" id="resetTimer"><span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#reset"></use></svg></span><span class="timer__control-label">Reset</span></button>
+            </div>
+            <p class="timer__message" id="timerMessage" role="status"></p>
+            <p class="timer__hint">Drag the ring to rewind or skip ahead</p>
+          </section>
+          <div class="activity__end activity__end--side">
+            <button type="button" class="button button--dark button--large button--block" data-action="end-move">End Move</button>
+            <p class="timer__note">You can end early. We’ll save the<br> time you actually moved.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <img class="site-footer__logo" src="assets/logo-reversed.svg" alt="MYMOVE" width="154" height="35">
+      <p class="site-footer__tagline">Movement That Fits The Moment</p>
+      <ul class="site-footer__links">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="preferences.html">Find My Move</a></li>
+      </ul>
+      <p class="site-footer__legal">© 2026 MYMOVE · Erika Harvey · MMC6936 Capstone Project</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
 </body>
-
 </html>

@@ -1,0 +1,33 @@
+/* How It Works */
+.page-hero { padding-block: var(--space-6) var(--space-8); }
+.page-hero__title { font-size: clamp(2.5rem, 1.8rem + 3vw, 4.25rem); letter-spacing: -0.015em; margin-bottom: var(--space-2); }
+.page-hero--with-art { display: grid; gap: var(--space-4); align-items: center; }
+.bubbles { position: relative; width: 17rem; height: 11rem; justify-self: end; }
+.bubbles__item { position: absolute; display: grid; place-items: center; border-radius: 50%; }
+.bubbles__item .icon { width: 50%; height: 50%; }
+.bubbles__item--blue { width: 8.5rem; height: 8.5rem; left: 0; top: 1.25rem; background: var(--color-dusty-blue); }
+.bubbles__item--terracotta { width: 6.75rem; height: 6.75rem; left: 7.5rem; top: 4.5rem; background: var(--color-terracotta); }
+.bubbles__item--teal { width: 5.5rem; height: 5.5rem; right: 0; top: 0; background: var(--color-deep-teal); color: var(--color-soft-cream); }
+@media (min-width: 700px) { .page-hero--with-art { grid-template-columns: 1fr auto; } }
+@media (max-width: 699px) { .bubbles { order: -1; width: 12rem; height: 8rem; transform-origin: right top; } .bubbles__item--blue { width: 6rem; height: 6rem; } .bubbles__item--terracotta { width: 4.75rem; height: 4.75rem; left: 5.25rem; top: 3.25rem; } .bubbles__item--teal { width: 3.75rem; height: 3.75rem; } }
+
+.bubbles__dot { position: absolute; border-radius: 50%; }
+.bubbles__dot--teal { width: 0.9rem; height: 0.9rem; left: -2rem; top: 1rem; background: var(--color-deep-teal); }
+.bubbles__dot--dark { width: 1.25rem; height: 1.25rem; left: 7.75rem; top: -1rem; background: var(--color-charcoal); }
+.bubbles__dot--terracotta { width: 0.8rem; height: 0.8rem; right: -0.25rem; top: 6.5rem; background: var(--color-terracotta); }
+@media (max-width: 699px) { .bubbles__dot--teal { left: -1.25rem; } .bubbles__dot--dark { left: 5.5rem; top: -0.75rem; } .bubbles__dot--terracotta { top: 4.5rem; } }
+
+.flow-step { position: relative; }
+@media (min-width: 1100px) {
+  .flow-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 3.375rem;
+    right: -1.5rem;
+    width: 1.5rem;
+    border-top: 2px dotted var(--color-dusty-blue);
+  }
+}
+.flow-step { display: grid; gap: var(--space-2); align-content: start; }
+.flow-step__top { display: flex; justify-content: space-between; align-items: center; }
+.flow-step__top .icon { color: var(--color-deep-teal); }

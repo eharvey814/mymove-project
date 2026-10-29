@@ -1,0 +1,21 @@
+/* Nice Work */
+.celebrate { position: relative; width: 12rem; height: 12rem; margin: var(--space-3) auto 0; display: grid; place-items: center; }
+.celebrate__mark { width: 8.75rem; border-radius: 50%; box-shadow: 0 0 0 14px var(--color-white); }
+.celebrate__dot { position: absolute; border-radius: 50%; }
+.celebrate__dot:nth-child(2) { width: 1.75rem; height: 1.75rem; left: -1rem; top: 3.5rem; background: var(--color-terracotta); }
+.celebrate__dot:nth-child(3) { width: 2.5rem; height: 2.5rem; right: -1.5rem; top: 1.5rem; background: var(--color-dusty-blue); }
+.celebrate__dot:nth-child(4) { width: 1.125rem; height: 1.125rem; left: 0.75rem; bottom: 1.5rem; background: var(--color-deep-teal); }
+.celebrate__dot:nth-child(5) { width: 0.875rem; height: 0.875rem; right: 0.5rem; bottom: 2.25rem; background: var(--color-charcoal); }
+.celebrate__dot:nth-child(6) { width: 0.875rem; height: 0.875rem; right: -2.25rem; top: 5.75rem; background: var(--color-terracotta); }
+.celebrate__dot:nth-child(7) { width: 0.75rem; height: 0.75rem; left: 3.5rem; top: -0.5rem; background: var(--color-charcoal); }
+.completion { display: grid; gap: var(--space-2); }
+.completion .page-title { margin-block: var(--space-3) var(--space-2); }
+.completion .page-title h1 { font-size: clamp(2.75rem, 2rem + 3vw, 4rem); }
+.feel { display: grid; gap: var(--space-2); }
+.feel__saved { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--color-deep-teal); font-size: var(--text-caption); font-weight: 500; min-height: 1.4em; }
+.feel__saved .icon { width: 0.9rem; height: 0.9rem; }
+.feel .option-group { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 700px) {
+  .feel { grid-template-columns: 1fr auto; align-items: center; }
+  .feel .option-group { grid-template-columns: repeat(3, 8.25rem); }
+}

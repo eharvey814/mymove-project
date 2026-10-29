@@ -1,0 +1,33 @@
+/* Global type: Roboto for titles and headings, Montserrat for body, buttons, and labels */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-charcoal);
+  background: var(--color-soft-cream);
+}
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.15; letter-spacing: -0.01em; }
+h1 { font-weight: 700; font-size: var(--text-h1); }
+h2 { font-weight: 500; font-size: var(--text-h2); }
+h3 { font-weight: 500; font-size: var(--text-h3); }
+p { max-width: 65ch; }
+
+/* Small uppercase label above headings */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-deep-terracotta);
+  margin-bottom: var(--space-2);
+}
+.lead { font-size: var(--text-lead); line-height: 1.7; color: var(--color-text-muted); }
+.text-accent { color: var(--color-deep-terracotta); }
+.text-link {
+  color: var(--color-deep-terracotta);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 1.5px;
+}
+.text-link:hover { color: var(--color-charcoal); }

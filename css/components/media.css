@@ -1,0 +1,106 @@
+/* Block: media (photo and video frames with the brand's "circle play" accents) */
+.media { position: relative; }
+.media__frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--color-blue-tint);
+  aspect-ratio: 5 / 4;
+}
+.media__frame img { width: 100%; height: 100%; object-fit: cover; }
+.media--tall .media__frame { aspect-ratio: 1 / 1; }
+.media--wide .media__frame { aspect-ratio: 16 / 9; }
+
+/* Decorative circles sit in front of the photo but stay inside the screen */
+.media__circle { position: absolute; border-radius: 50%; pointer-events: none; }
+.media__circle--terracotta { width: 5.75rem; height: 5.75rem; left: 0.25rem; bottom: -1.5rem; background: var(--color-terracotta); }
+.media__circle--blue { width: 2.5rem; height: 2.5rem; left: 4.5rem; bottom: -2.25rem; background: var(--color-dusty-blue); border: 5px solid var(--color-soft-cream); }
+.media__circle--teal { width: 2.75rem; height: 2.75rem; right: 0.25rem; top: -1rem; background: var(--color-deep-teal); }
+@media (min-width: 700px) {
+  .media__circle--terracotta { width: 7.75rem; height: 7.75rem; left: -1.25rem; bottom: -2rem; }
+  .media__circle--blue { width: 3.25rem; height: 3.25rem; left: 5rem; bottom: -2.75rem; border-width: 6px; }
+  .media__circle--teal { width: 3.5rem; height: 3.5rem; right: -1.25rem; top: -1.25rem; }
+}
+@media (min-width: 1100px) {
+  .media__circle--terracotta { width: 12rem; height: 12rem; left: -2.5rem; bottom: -3.5rem; }
+  .media__circle--blue { width: 5rem; height: 5rem; left: 6.5rem; bottom: -4.25rem; border-width: 8px; }
+  .media__circle--teal { width: 5rem; height: 5rem; right: -2.5rem; top: -1.75rem; }
+}
+
+/* Leave room for the circles that hang below a photo when content follows it */
+@media (max-width: 1099px) { .media:not(:last-child) { margin-bottom: var(--space-5); } }
+
+/* Step animation panel (Movement page): Deep Teal frame that shows one looping GIF per step */
+.media__video {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(135deg, #3d7a7d, var(--color-deep-teal));
+}
+.media__video::before, .media__video::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.07); }
+.media__video::before { width: 60%; aspect-ratio: 1; right: -12%; top: -30%; }
+.media__video::after { width: 50%; aspect-ratio: 1; left: -15%; bottom: -35%; }
+.media__video--gif::before, .media__video--gif::after { display: none; }
+.media__gif { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.media__start {
+  position: absolute; z-index: 2; left: 1rem; bottom: 1rem;   /* bottom-left, clear of the figure */
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.25rem; border-radius: var(--radius-pill);
+  background: var(--color-soft-cream); color: var(--color-charcoal);
+  font-weight: 600; font-size: 0.9375rem; box-shadow: var(--shadow-lift);
+  transition: transform 0.2s;
+}
+.media__start .icon { width: 1.125rem; height: 1.125rem; color: var(--color-deep-teal); }
+.media__start:hover { transform: scale(1.04); }
+/* Countdown for timed steps (e.g. a 20-second plank) */
+.media__countdown {
+  position: absolute; z-index: 1; right: 1rem; top: 1rem;   /* top-right, clear of the figure */
+  display: grid; justify-items: center; min-width: 5.5rem;
+  padding: 0.5rem 0.9rem; border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.94); color: var(--color-charcoal); box-shadow: var(--shadow-soft);
+}
+.media__countdown-num { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; line-height: 1; }
+.media__countdown-label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+.media__countdown.is-final .media__countdown-num { color: var(--color-deep-terracotta); }
+.media__countdown.is-below-badge { top: 3.5rem; }
+@media (max-width: 699px) {
+  .media__countdown { right: 0.75rem; top: 0.75rem; min-width: 4.25rem; padding: 0.35rem 0.6rem; }
+  .media__countdown.is-below-badge { top: 2.75rem; }
+  .media__countdown-num { font-size: 1.5rem; }
+  .media__countdown-label { font-size: 0.5625rem; }
+}
+.media__label {
+  position: absolute; z-index: 1; top: 1rem; left: 1rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.85rem; border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.92); font-size: 0.75rem; font-weight: 500;
+  max-width: calc(100% - 9rem);
+}
+.media__label > span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Rep / side counter for counted steps */
+.media__count {
+  position: absolute; z-index: 1; top: 1rem; right: 1rem;
+  padding: 0.35rem 0.85rem; border-radius: var(--radius-pill);
+  background: var(--color-terracotta); color: var(--color-charcoal);
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.9375rem;
+}
+@media (max-width: 699px) {
+  .media__label, .media__count { top: 0.75rem; }
+  .media__label { left: 0.75rem; max-width: calc(100% - 7.5rem); }
+  .media__count { right: 0.75rem; font-size: 0.8125rem; padding: 0.3rem 0.7rem; }
+}
+.media__label .icon { width: 0.9rem; height: 0.9rem; color: var(--color-deep-teal); }
+.media__credit { margin-top: 0.75rem; font-size: var(--text-caption); color: var(--color-text-muted); max-width: none; }
+.media__credit strong { color: var(--color-charcoal); font-weight: 600; }
+
+/* Focal-point modifiers for photo crops */
+.media__img--center { object-position: 50% 48%; }
+.media__img--high { object-position: 52% 38%; }
+.media__img--upper { object-position: 52% 42%; }
+@media (max-width: 699px) {
+  .media__start { left: 0.75rem; bottom: 0.75rem; padding: 0.45rem 0.8rem; font-size: 0.75rem; }
+  .media__start .icon { width: 0.875rem; height: 0.875rem; }
+}

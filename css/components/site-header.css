@@ -1,0 +1,82 @@
+/* Block: site-header (white bar so navigation stands out against the cream page) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+}
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--header-height);
+}
+/* Logo: 124px wide on phones (brand minimum is 120px), 130px tablet, 154px desktop */
+.site-header__logo { margin-right: auto; display: block; }
+.site-header__logo img { width: 7.75rem; }
+.site-header__cta { display: none; }
+.site-header__toggle {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--color-soft-cream);
+  color: var(--color-charcoal);
+}
+
+/* Block: site-nav (dropdown on phones and tablets, inline on desktop) */
+.site-nav__list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--gutter) var(--space-3);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: var(--shadow-soft);
+}
+.site-nav__list.is-open { display: flex; }
+.site-nav__link {
+  display: block;
+  padding: 0.75rem 0;
+  font-weight: 500;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-soft-cream);
+}
+.site-nav__link[aria-current="page"] { color: var(--color-deep-terracotta); }
+.site-nav__cta { margin-top: var(--space-2); }
+
+@media (min-width: 700px) {
+  .site-header__logo img { width: 8.125rem; }
+  .site-header__cta { display: inline-flex; }
+  .site-nav__cta { display: none; }
+}
+@media (min-width: 1100px) {
+  .site-header__logo img { width: 9.625rem; }
+  .site-header__toggle, .site-header__cta { display: none; }
+  .site-nav__list {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    background: none;
+  }
+  .site-nav__link {
+    padding: 0.25rem 0;
+    font-size: 0.9375rem;
+    border-bottom: 2.5px solid transparent;
+  }
+  .site-nav__link:hover { border-bottom-color: var(--color-dusty-blue); }
+  .site-nav__link[aria-current="page"] { color: var(--color-charcoal); border-bottom-color: var(--color-terracotta); }
+  .site-nav__cta { display: list-item; margin: 0 0 0 var(--space-1); }
+}

@@ -1,0 +1,25 @@
+/* Movement (activity) */
+.activity { display: grid; gap: var(--space-3); }
+.activity__title-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); }
+.activity__step-count { font-size: var(--text-small); font-weight: 600; color: var(--color-deep-terracotta); white-space: nowrap; }
+.activity__main, .activity__side { display: grid; gap: var(--space-3); align-content: start; }
+/* Phones and tablets: timer comes right after the video and title */
+.activity__main { display: contents; }
+.activity__video { order: 1; }
+.activity__heading { order: 2; }
+.activity__side { order: 3; }
+.activity__note { order: 4; }
+.activity__steps { order: 5; }
+
+@media (min-width: 1100px) {
+  .activity { grid-template-columns: 1fr 27.5rem; gap: var(--space-8) var(--space-6); align-items: start; }
+  .activity__main { display: grid; }
+  .activity__side { position: sticky; top: calc(var(--header-height) + var(--space-3)); }
+}
+.activity__side .button { margin-top: var(--space-1); }
+.activity__end--bottom { order: 6; }
+.activity__end--side { display: none; }
+@media (min-width: 1100px) {
+  .activity__end--bottom { display: none; }
+  .activity__end--side { display: block; }
+}

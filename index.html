@@ -1,54 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYMOVE | Movement For The Moment</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYMOVE | Movement For The Moment</title>
+  <meta name="description" content="MYMOVE suggests quick, simple movement that fits your time, your mood, and where you are.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
-<body>
-
-    <header class="site-header">
-        <a href="index.html" class="logo">MYMOVE</a>
-        <nav>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="preferences.html" class="nav-button">Find My Move</a>
-        </nav>
-    </header>
-
-    <main class="container">
-
-        <section class="hero">
-            <div class="media-placeholder">Hero image of someone doing a workout</div>
-
+<body data-page="home">
+  <a class="visually-hidden" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="index.html"><img src="assets/logo.svg" alt="MYMOVE home" width="154" height="35"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list" id="site-menu">
+          <li><a class="site-nav__link" href="how-it-works.html">How It Works</a></li>
+          <li><a class="site-nav__link" href="about.html">About</a></li>
+          <li><a class="site-nav__link" href="contact.html">Contact</a></li>
+          <li class="site-nav__cta"><a class="button button--primary button--small button--block" href="preferences.html">Find My Move</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary button--small site-header__cta" href="preferences.html">Find My Move</a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg><span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Movement that fits the moment</p>
+          <h1 class="hero__title">Find your<br> <span class="text-accent">move.</span></h1>
+          <p class="lead">Short, simple movement matched to the time you have, how you feel, and where you are. Answer three quick questions and start moving in under a minute.</p>
+          <div class="hero__actions">
+            <a class="button button--primary button--large" href="preferences.html">Get Started <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"></use></svg></a>
+          </div>
+        </div>
+        <div class="media hero__media">
+          <div class="media__frame"><img src="assets/images/desk-stretch.jpg" alt="A smiling woman stretches both arms overhead at her desk" width="1200" height="1800" style="object-position: 50% 48%"></div>
+          <span class="media__circle media__circle--teal" aria-hidden="true"></span><span class="media__circle media__circle--terracotta" aria-hidden="true"></span><span class="media__circle media__circle--blue" aria-hidden="true"></span>
+          <div class="move-card">
+            <img class="move-card__mark" src="assets/submark.svg" alt="" width="60" height="60">
             <div>
-                <h1>Find Your Move</h1>
-                <p>Find movement that fits your time, your mood, and your location.</p>
-                <a href="preferences.html" class="button">Get Started</a>
+              <p class="move-card__eyebrow">Your move</p>
+              <p class="move-card__title">5-minute desk stretch</p>
+              <p class="move-card__meta">Seated · No equipment</p>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <section class="info-row" aria-label="What MYMOVE asks">
-            <div class="info-box">
-                <h2>Time</h2>
-                <p>Tell us how many minutes you have.</p>
-            </div>
-            <div class="info-box">
-                <h2>Feeling</h2>
-                <p>Tell us how you feel right now.</p>
-            </div>
-            <div class="info-box">
-                <h2>Place</h2>
-                <p>Tell us where you are.</p>
-            </div>
-        </section>
+    <section class="section section--white">
+      <div class="container">
+        <header class="section__header section__header--center home-how__header">
+          <p class="eyebrow">How it works</p>
+          <h2>Three questions.<br class="u-mobile-only"> One move.</h2>
+          <p class="u-desktop-only">No plans, no equipment, no pressure. Just tell us about right now.</p>
+        </header>
+        <div class="grid grid--3">
+          <article class="card card--cream input-card input-card--row">
+            <span class="icon-badge input-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg></span>
+            <h3 class="card__title input-card__title">Time</h3>
+            <p class="card__text input-card__text">How many minutes do you have? Five counts.</p>
+            <ul class="chip-list input-card__chips" aria-label="Time options"><li class="chip chip--selected">5 min</li><li class="chip">10 min</li><li class="chip">15 min</li><li class="chip">30 min</li></ul>
+          </article>
+          <article class="card card--cream input-card input-card--row">
+            <span class="icon-badge input-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#smile"></use></svg></span>
+            <h3 class="card__title input-card__title">Feeling</h3>
+            <p class="card__text input-card__text">Low on energy or wound up? We match your mood.</p>
+            <ul class="chip-list input-card__chips" aria-label="Feeling options"><li class="chip">Low energy</li><li class="chip chip--selected">Stressed</li><li class="chip">Energized</li></ul>
+          </article>
+          <article class="card card--cream input-card input-card--row">
+            <span class="icon-badge input-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pin"></use></svg></span>
+            <h3 class="card__title input-card__title">Place</h3>
+            <p class="card__text input-card__text">At your desk, at home, or outside. No gym needed.</p>
+            <ul class="chip-list input-card__chips" aria-label="Place options"><li class="chip">Home</li><li class="chip">Outside</li><li class="chip chip--selected">Work/School</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    </main>
-
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2 class="cta-band__title">Got 5 minutes?<br>That counts.</h2>
+            <p class="cta-band__text">Small moments of movement add up.</p>
+          </div>
+          <a class="button button--dark button--large" href="preferences.html">Find My Move <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"></use></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <img class="site-footer__logo" src="assets/logo-reversed.svg" alt="MYMOVE" width="154" height="35">
+      <p class="site-footer__tagline">Movement That Fits The Moment</p>
+      <ul class="site-footer__links">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="preferences.html">Find My Move</a></li>
+      </ul>
+      <p class="site-footer__legal">© 2026 MYMOVE · Erika Harvey · MMC6936 Capstone Project</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
 </body>
-
 </html>

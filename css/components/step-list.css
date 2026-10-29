@@ -1,0 +1,29 @@
+/* Block: step-list (numbered move instructions)
+   Modifier --preview: compact list on the suggestion page
+   Modifier --live: rows on the activity page that follow the timer */
+.step-list { display: grid; gap: 0.75rem; counter-reset: step; }
+.step-list__item { display: flex; align-items: center; gap: 0.875rem; counter-increment: step; }
+.step-list__item::before {
+  content: counter(step);
+  display: grid; place-items: center; flex-shrink: 0;
+  width: 1.625rem; height: 1.625rem; border-radius: 50%;
+  background: var(--color-blue-tint); color: var(--color-deep-teal);
+  font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem;
+}
+.step-list--preview .step-list__item { font-size: 0.9375rem; }
+
+.step-list--live { gap: 0.625rem; }
+.step-list--live .step-list__item {
+  position: relative;
+  min-height: 3.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1.125rem;
+  border: 1.2px solid var(--color-line);
+}
+.step-list--live .step-list__item::before { width: 1.875rem; height: 1.875rem; background: none; border: 2px solid var(--color-dusty-blue); color: var(--color-text-muted); }
+.step-list__item--done { border-color: transparent !important; background: rgba(255, 255, 255, 0.6); color: var(--color-text-muted); }
+.step-list__item--done::before { content: "✓" !important; background: var(--color-deep-teal) !important; border-color: var(--color-deep-teal) !important; color: var(--color-white) !important; }
+.step-list__item--current { border-color: transparent !important; background: var(--color-white); box-shadow: var(--shadow-soft); font-weight: 600; overflow: hidden; }
+.step-list__item--current::before { background: var(--color-terracotta) !important; border-color: var(--color-terracotta) !important; color: var(--color-charcoal) !important; }
+.step-list__item--current::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--color-terracotta); }
+.step-list__now { margin-left: auto; padding: 0.25rem 0.75rem; border-radius: var(--radius-pill); background: var(--color-terracotta-tint); color: var(--color-deep-terracotta); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.1em; }

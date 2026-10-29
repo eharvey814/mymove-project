@@ -1,71 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tell Us About You | MYMOVE</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tell Us About You | MYMOVE</title>
+  <meta name="description" content="MYMOVE suggests quick, simple movement that fits your time, your mood, and where you are.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
 <body data-page="preferences">
-
-    <header class="site-header">
-        <a href="index.html" class="logo">MYMOVE</a>
-        <nav>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="preferences.html" class="nav-button">Find My Move</a>
-        </nav>
-    </header>
-
-    <main class="container">
-
-        <h1>Tell us about YOU.</h1>
-        <p>Answer three quick questions and we'll suggest a move.</p>
-
-        <div class="question-grid">
-
-            <section class="question">
-                <h2>1. How much time do you have?</h2>
-                <div class="options" data-group="time">
-                    <button type="button" class="option" data-value="5" aria-pressed="false">5 minutes</button>
-                    <button type="button" class="option" data-value="10" aria-pressed="false">10 minutes</button>
-                    <button type="button" class="option" data-value="15" aria-pressed="false">15 minutes</button>
-                    <button type="button" class="option" data-value="30" aria-pressed="false">30 minutes</button>
-                </div>
-            </section>
-
-            <section class="question">
-                <h2>2. How are you feeling?</h2>
-                <div class="options" data-group="mood">
-                    <button type="button" class="option" data-value="low-energy" aria-pressed="false">Low energy</button>
-                    <button type="button" class="option" data-value="stressed" aria-pressed="false">Stressed</button>
-                    <button type="button" class="option" data-value="energized" aria-pressed="false">Energized</button>
-                    <button type="button" class="option" data-value="motivated" aria-pressed="false">Motivated</button>
-                </div>
-            </section>
-
-            <section class="question">
-                <h2>3. Where are you?</h2>
-                <div class="options" data-group="place">
-                    <button type="button" class="option" data-value="home" aria-pressed="false">Home</button>
-                    <button type="button" class="option" data-value="outside" aria-pressed="false">Outside</button>
-                    <button type="button" class="option" data-value="work" aria-pressed="false">Work/School</button>
-                    <button type="button" class="option" data-value="gym" aria-pressed="false">Gym</button>
-                </div>
-            </section>
-
+  <a class="visually-hidden" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="index.html"><img src="assets/logo.svg" alt="MYMOVE home" width="154" height="35"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list" id="site-menu">
+          <li><a class="site-nav__link" href="how-it-works.html">How It Works</a></li>
+          <li><a class="site-nav__link" href="about.html">About</a></li>
+          <li><a class="site-nav__link" href="contact.html">Contact</a></li>
+          <li class="site-nav__cta"><a class="button button--primary button--small button--block" href="preferences.html">Find My Move</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary button--small site-header__cta" href="preferences.html">Find My Move</a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg><span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="container">
+      <nav class="stepper" aria-label="Progress">
+        <p class="stepper__summary"><strong>STEP 1 OF 4</strong><span>Tell us</span></p>
+        <ol class="stepper__list">
+          <li class="stepper__step stepper__step--current" aria-current="step"><span class="stepper__dot">1</span><span class="stepper__label">Tell us</span></li><li class="stepper__step stepper__step--upcoming"><span class="stepper__dot">2</span><span class="stepper__label">Your move</span></li><li class="stepper__step stepper__step--upcoming"><span class="stepper__dot">3</span><span class="stepper__label">Move</span></li><li class="stepper__step stepper__step--upcoming"><span class="stepper__dot">4</span><span class="stepper__label">Done</span></li>
+        </ol>
+      </nav>
+      <header class="page-title">
+        <h1>Tell us about you.</h1>
+        <p>Three quick questions.<span class="u-hide-mobile"> We’ll handle the rest.</span></p>
+      </header>
+      <div class="grid grid--3">
+          <section class="card card--shadow question" aria-labelledby="q-time">
+            <div class="question__head">
+              <span class="icon-badge question__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg></span>
+              <h2 class="question__title" id="q-time">How much time do you have?</h2>
+              <span class="card__index question__index">01 / 03</span>
+            </div>
+            <div class="option-group option-group--stack" data-group="time" role="group" aria-labelledby="q-time">
+              <button type="button" class="option" data-value="5" aria-pressed="false"><span>5 min<span class="u-desktop-only">utes</span></span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="10" aria-pressed="false"><span>10 min<span class="u-desktop-only">utes</span></span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="15" aria-pressed="false"><span>15 min<span class="u-desktop-only">utes</span></span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="30" aria-pressed="false"><span>30 min<span class="u-desktop-only">utes</span></span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+            </div>
+          </section>
+          <section class="card card--shadow question" aria-labelledby="q-mood">
+            <div class="question__head">
+              <span class="icon-badge question__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#smile"></use></svg></span>
+              <h2 class="question__title" id="q-mood">How are you feeling?</h2>
+              <span class="card__index question__index">02 / 03</span>
+            </div>
+            <div class="option-group option-group--stack" data-group="mood" role="group" aria-labelledby="q-mood">
+              <button type="button" class="option" data-value="low-energy" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#meh"></use></svg><span>Low energy</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="stressed" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#wind"></use></svg><span>Stressed</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="energized" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#bolt"></use></svg><span>Energized</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="motivated" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#heart"></use></svg><span>Motivated</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+            </div>
+          </section>
+          <section class="card card--shadow question" aria-labelledby="q-place">
+            <div class="question__head">
+              <span class="icon-badge question__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pin"></use></svg></span>
+              <h2 class="question__title" id="q-place">Where are you?</h2>
+              <span class="card__index question__index">03 / 03</span>
+            </div>
+            <div class="option-group option-group--stack" data-group="place" role="group" aria-labelledby="q-place">
+              <button type="button" class="option" data-value="home" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#home"></use></svg><span>Home</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="outside" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#sun"></use></svg><span>Outside</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="work" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#work"></use></svg><span>Work/School</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="gym" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#gym"></use></svg><span>Gym</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+            </div>
+          </section>
+      </div>
+      <div class="card card--shadow summary-bar">
+        <div>
+          <p class="summary-bar__label">Your moment</p>
+          <ul class="chip-list mt-2" id="summaryChips" aria-live="polite">
+            <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-summary="time">Time</span></li>
+            <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#smile"></use></svg><span data-summary="mood">Feeling</span></li>
+            <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pin"></use></svg><span data-summary="place">Place</span></li>
+          </ul>
         </div>
-
-        <p id="formError" class="error" role="alert"></p>
-
-        <button type="button" id="findMove" class="button">Find My Move</button>
-
-    </main>
-
-    <script src="script.js"></script>
+        <p class="summary-bar__text" id="summaryText" aria-hidden="true">Answer all three questions</p>
+        <div class="summary-bar__actions">
+          <span class="summary-bar__status is-hidden" id="allAnswered"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg>All three answered</span>
+          <button type="button" class="button button--primary button--large" id="findMove">Find My Move <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"></use></svg></button>
+        </div>
+        <p class="summary-bar__error" id="formError" role="alert"></p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <img class="site-footer__logo" src="assets/logo-reversed.svg" alt="MYMOVE" width="154" height="35">
+      <p class="site-footer__tagline">Movement That Fits The Moment</p>
+      <ul class="site-footer__links">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="preferences.html">Find My Move</a></li>
+      </ul>
+      <p class="site-footer__legal">© 2026 MYMOVE · Erika Harvey · MMC6936 Capstone Project</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
 </body>
-
 </html>

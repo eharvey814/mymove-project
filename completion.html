@@ -1,73 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nice Work | MYMOVE</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nice Work | MYMOVE</title>
+  <meta name="description" content="MYMOVE suggests quick, simple movement that fits your time, your mood, and where you are.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
 </head>
-
-<body data-page="complete">
-
-    <header class="site-header">
-        <a href="index.html" class="logo">MYMOVE</a>
-        <nav>
-            <a href="how-it-works.html">How It Works</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="preferences.html" class="nav-button">Find My Move</a>
-        </nav>
-    </header>
-
-    <main class="container">
-
-        <h1>Nice Work!</h1>
-
-        <p id="missingData" class="hidden">
-            No finished moves yet. <a href="preferences.html">Find a move</a> to get started.
-        </p>
-
-        <section id="summary" class="hidden">
-            <p id="summaryTitle"></p>
-
-            <div class="info-row">
-                <div class="info-box">
-                    <h2>Duration</h2>
-                    <p id="summaryDuration"></p>
-                </div>
-                <div class="info-box">
-                    <h2>Level</h2>
-                    <p id="summaryLevel"></p>
-                </div>
-                <div class="info-box">
-                    <h2>Place</h2>
-                    <p id="summaryPlace"></p>
-                </div>
-            </div>
-
-            <h2>How did it feel?</h2>
-            <div class="options" data-group="rating">
-                <button type="button" class="option" data-value="Great" aria-pressed="false">Great</button>
-                <button type="button" class="option" data-value="Okay" aria-pressed="false">Okay</button>
-                <button type="button" class="option" data-value="Tough" aria-pressed="false">Tough</button>
-            </div>
-            <p id="ratingMessage" role="status"></p>
-
-            <h2>My Moves This Session</h2>
-            <button type="button" id="toggleHistory" class="button secondary" aria-expanded="false">View My
-                Moves</button>
-            <ul id="historyList" class="history hidden"></ul>
-        </section>
-
-        <div class="button-row">
-            <a href="preferences.html" class="button">Find Another Move</a>
-            <a href="index.html" class="button secondary">Home</a>
+<body data-page="completion">
+  <a class="visually-hidden" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="index.html"><img src="assets/logo.svg" alt="MYMOVE home" width="154" height="35"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="site-nav__list" id="site-menu">
+          <li><a class="site-nav__link" href="how-it-works.html">How It Works</a></li>
+          <li><a class="site-nav__link" href="about.html">About</a></li>
+          <li><a class="site-nav__link" href="contact.html">Contact</a></li>
+          <li class="site-nav__cta"><a class="button button--primary button--small button--block" href="preferences.html">Find My Move</a></li>
+        </ul>
+      </nav>
+      <a class="button button--primary button--small site-header__cta" href="preferences.html">Find My Move</a>
+      <button class="site-header__toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg><span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+  <main id="main" class="page">
+    <div class="container container--narrow">
+      <nav class="stepper" aria-label="Progress">
+        <p class="stepper__summary"><strong>STEP 4 OF 4</strong><span>Done</span></p>
+        <ol class="stepper__list">
+          <li class="stepper__step stepper__step--done"><span class="stepper__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span><span class="stepper__label">Tell us</span></li><li class="stepper__step stepper__step--done"><span class="stepper__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span><span class="stepper__label">Your move</span></li><li class="stepper__step stepper__step--done"><span class="stepper__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span><span class="stepper__label">Move</span></li><li class="stepper__step stepper__step--current" aria-current="step"><span class="stepper__dot">4</span><span class="stepper__label">Done</span></li>
+        </ol>
+      </nav>
+      <div class="note note--info is-hidden" id="missingData">
+        <h2 class="card__title">No finished moves yet.</h2>
+        <p>Answer three quick questions and we’ll find a move for you.</p>
+        <a class="button button--primary" href="preferences.html">Find My Move <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow"></use></svg></a>
+      </div>
+      <div class="completion is-hidden" id="summary">
+        <div class="celebrate" aria-hidden="true">
+          <img class="celebrate__mark" src="assets/submark-warm.svg" alt="" width="140" height="140">
+          <span class="celebrate__dot"></span><span class="celebrate__dot"></span><span class="celebrate__dot"></span>
+          <span class="celebrate__dot"></span><span class="celebrate__dot"></span><span class="celebrate__dot"></span>
         </div>
-
-    </main>
-
-    <script src="script.js"></script>
+        <header class="page-title">
+          <h1>Nice work!</h1>
+          <p>You finished <span id="summaryTitle"></span>. Every minute counts.</p>
+        </header>
+        <div class="stat-group">
+          <div class="stat"><span class="icon-badge icon-badge--sm icon-badge--tint"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg></span><span class="stat__label">Duration</span><span class="stat__value" id="summaryDuration"></span></div>
+          <div class="stat"><span class="icon-badge icon-badge--sm icon-badge--tint"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#level"></use></svg></span><span class="stat__label">Level</span><span class="stat__value" id="summaryLevel"></span></div>
+          <div class="stat"><span class="icon-badge icon-badge--sm icon-badge--tint"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pin"></use></svg></span><span class="stat__label">Place</span><span class="stat__value" id="summaryPlace"></span></div>
+        </div>
+        <section class="card feel" aria-labelledby="feelTitle">
+          <div>
+            <h2 class="card__title" id="feelTitle">How did it feel?</h2>
+            <p class="feel__saved" id="ratingMessage" role="status"></p>
+          </div>
+          <div class="option-group" data-group="rating" role="group" aria-labelledby="feelTitle">
+            <button type="button" class="option" data-value="Great" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#smile"></use></svg><span>Great</span></button>
+            <button type="button" class="option" data-value="Okay" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#meh"></use></svg><span>Okay</span></button>
+            <button type="button" class="option" data-value="Tough" aria-pressed="false"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#frown"></use></svg><span>Tough</span></button>
+          </div>
+        </section>
+        <section class="card history" aria-labelledby="historyTitle">
+          <div class="history__head">
+            <h2 class="card__title" id="historyTitle">My moves this session</h2>
+            <button type="button" class="history__toggle" id="toggleHistory" aria-expanded="false" aria-controls="historyList"><span>View My Moves</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#chev_down"></use></svg></button>
+          </div>
+          <ul class="history__list is-hidden" id="historyList"></ul>
+        </section>
+        <div class="button-row button-row--stack mt-2">
+          <a class="button button--primary button--large" href="preferences.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#refresh"></use></svg>Find Another Move</a>
+          <a class="button button--secondary button--large" href="index.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#home"></use></svg>Home</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <img class="site-footer__logo" src="assets/logo-reversed.svg" alt="MYMOVE" width="154" height="35">
+      <p class="site-footer__tagline">Movement That Fits The Moment</p>
+      <ul class="site-footer__links">
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="preferences.html">Find My Move</a></li>
+      </ul>
+      <p class="site-footer__legal">© 2026 MYMOVE · Erika Harvey · MMC6936 Capstone Project</p>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
 </body>
-
 </html>

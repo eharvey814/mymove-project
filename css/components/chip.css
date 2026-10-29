@@ -1,0 +1,21 @@
+/* Block: chip (pill labels; selected uses Terracotta per brand guide) */
+.chip-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-height: 2.25rem;
+  padding: 0 0.875rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-dusty-blue);
+  background: var(--color-white);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  white-space: nowrap;
+}
+@media (max-width: 699px) { .chip { padding: 0 0.625rem; } .chip-list { gap: 0.375rem; } }
+.chip--selected { background: var(--color-terracotta); border-color: var(--color-terracotta); font-weight: 600; }
+.chip--info { background: var(--color-blue-tint); border-color: var(--color-blue-tint); font-size: var(--text-small); min-height: 2.5rem; padding: 0 1rem; }
+.chip--info .icon { color: var(--color-deep-teal); width: 1.125rem; height: 1.125rem; }
+.chip--pill-terracotta { background: var(--color-terracotta-tint); border-color: var(--color-terracotta-tint); font-weight: 600; }
+.chip--pill-blue { background: var(--color-blue-tint); border-color: var(--color-blue-tint); font-weight: 600; }

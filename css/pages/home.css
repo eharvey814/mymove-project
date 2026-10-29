@@ -1,0 +1,13 @@
+/* Home page arrangements */
+.hero { padding-block: var(--space-4) var(--space-8); }
+.hero__title { font-size: var(--text-display); letter-spacing: -0.015em; line-height: 1.05; margin-bottom: var(--space-3); }
+.hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-4); margin-top: var(--space-4); }
+.hero__actions .button { flex: 1 1 100%; }
+.hero__media { margin-bottom: var(--space-4); }
+@media (min-width: 700px) {
+  .hero__actions .button { flex: 0 0 auto; }
+  .hero { padding-block: var(--space-6) var(--space-10); }
+}
+
+/* Phones: the "How it works" heading is left-aligned, as in the mockup */
+@media (max-width: 699px) { .home-how__header { text-align: left; } }

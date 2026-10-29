@@ -1,0 +1,21 @@
+/* Block: cta-band (Terracotta call to action with circle accents) */
+.cta-band {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  border-radius: var(--radius-xl);
+  background: var(--color-terracotta);
+}
+.cta-band::before, .cta-band::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.cta-band::before { width: 20rem; height: 20rem; right: -6rem; top: -8rem; background: var(--color-terracotta-light); }
+.cta-band::after { width: 7rem; height: 7rem; left: 55%; bottom: -4.5rem; background: #e9a68e; }
+.cta-band > * { position: relative; z-index: 1; }
+@media (min-width: 700px) { .cta-band > .button { justify-self: start; } }
+.cta-band__title { font-weight: 700; font-size: clamp(2rem, 1.4rem + 2.6vw, 3.5rem); line-height: 1.1; }
+.cta-band__text { margin-top: var(--space-1); font-weight: 500; }
+@media (min-width: 1100px) {
+  .cta-band { grid-template-columns: 1fr auto; align-items: center; padding: var(--space-8) var(--space-8); }
+  .cta-band::before { width: 23rem; height: 23rem; right: -2rem; top: -10rem; }
+}

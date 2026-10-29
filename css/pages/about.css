@@ -1,0 +1,33 @@
+/* About */
+.about-hero__title { font-size: clamp(2.125rem, 1.6rem + 2.4vw, 3.625rem); letter-spacing: -0.015em; margin-bottom: var(--space-3); }
+.about-hero p + p { margin-top: var(--space-2); }
+.story {
+  display: grid;
+  grid-template-areas: "head" "text" "sig" "cta";
+  gap: var(--space-3);
+}
+.story__head { grid-area: head; }
+.story__text { grid-area: text; }
+.story .signature { grid-area: sig; margin-top: 0; }
+.story__cta { grid-area: cta; }
+@media (max-width: 699px) { .story__cta { width: 100%; } }
+@media (min-width: 700px) and (max-width: 1099px) {
+  .story { grid-template-columns: 1fr auto; grid-template-areas: "head head" "text text" "sig cta"; align-items: center; }
+}
+.story__quote { font-size: var(--text-h2); line-height: 1.2; }
+.story__bar { width: 5.625rem; height: 0.5rem; border-radius: 0.25rem; background: var(--color-terracotta); margin-top: var(--space-3); }
+.story__text { font-size: var(--text-lead); line-height: 1.75; }
+.signature { display: flex; align-items: center; gap: 1rem; margin-top: var(--space-3); }
+.signature img { width: 3.25rem; }
+.signature__name { font-family: var(--font-heading); font-weight: 500; font-size: 1.125rem; }
+.signature__role { font-size: var(--text-caption); font-weight: 500; color: var(--color-text-muted); }
+@media (min-width: 1100px) {
+  .story { grid-template-columns: 1fr 1.15fr; grid-template-areas: "head text" "cta sig"; column-gap: var(--space-8); row-gap: var(--space-4); align-items: start; }
+  .story__cta { justify-self: start; }
+}
+@media (max-width: 1099px) {
+  .about-hero.split { grid-template-columns: 1fr; }
+  .about-hero .media { order: -1; margin-bottom: var(--space-5); }
+  .about-hero .media__frame { aspect-ratio: 2 / 1; }
+}
+@media (max-width: 699px) { .about-hero .media__frame { aspect-ratio: 7 / 6; } }

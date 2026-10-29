@@ -1,0 +1,39 @@
+/* Block: input-card (Time / Feeling / Place cards)
+   Default: stacked. Modifier --row: icon beside the title on phones,
+   a single row on tablets (Home page), stacked again on desktop. */
+.input-card {
+  display: grid;
+  grid-template-areas: "icon" "title" "text" "chips";
+  align-content: start;
+  justify-items: start;
+  row-gap: var(--space-1);
+}
+.input-card__icon { grid-area: icon; margin-bottom: var(--space-1); }
+.input-card__title { grid-area: title; margin: 0; }
+.input-card__text { grid-area: text; }
+.input-card__chips { grid-area: chips; margin-top: var(--space-1); }
+
+.input-card--row {
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon title" "text text" "chips chips";
+  column-gap: var(--space-2);
+  align-items: center;
+}
+.input-card--row .input-card__icon { margin-bottom: 0; }
+@media (min-width: 700px) and (max-width: 1099px) {
+  .input-card--row {
+    grid-template-columns: auto minmax(0, 1fr) 18.75rem;
+    grid-template-areas: "icon title chips" "icon text chips";
+    align-items: start;
+  }
+  .input-card--row .input-card__icon { align-self: center; }
+  .input-card--row .input-card__chips { margin-top: 0; align-self: center; }
+}
+@media (min-width: 1100px) {
+  .input-card--row {
+    grid-template-columns: 1fr;
+    grid-template-areas: "icon" "title" "text" "chips";
+    align-items: start;
+  }
+  .input-card--row .input-card__icon { margin-bottom: var(--space-1); }
+}

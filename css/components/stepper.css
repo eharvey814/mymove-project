@@ -1,0 +1,38 @@
+/* Block: stepper (progress through Tell us → Your move → Move → Done) */
+.stepper { margin: var(--space-3) auto 0; max-width: 35rem; }
+.stepper__summary { display: flex; justify-content: space-between; font-size: var(--text-caption); margin-bottom: 0.5rem; max-width: none; }
+.stepper__summary strong { color: var(--color-deep-terracotta); letter-spacing: 0.1em; font-weight: 600; }
+.stepper__summary span { color: var(--color-text-muted); font-weight: 500; }
+.stepper__list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.375rem; }
+.stepper__step { height: 0.375rem; border-radius: 3px; background: var(--color-cream-dark); }
+.stepper__step--done { background: var(--color-deep-teal); }
+.stepper__step--current { background: var(--color-terracotta); }
+.stepper__dot, .stepper__label { display: none; }
+
+@media (min-width: 700px) {
+  .stepper__summary { display: none; }
+  .stepper__list { position: relative; gap: 0; }
+  .stepper__list::before {
+    content: ""; position: absolute; top: 0.875rem; left: 12.5%; right: 12.5%;
+    height: 3px; background: var(--color-cream-dark);
+  }
+  .stepper__step { position: relative; height: auto; background: none; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .stepper__step::before {
+    content: ""; position: absolute; top: 0.875rem; right: 50%; width: 100%; height: 3px; background: transparent;
+  }
+  .stepper__step--done + .stepper__step::before, .stepper__step--done::before { background: var(--color-deep-teal); }
+  .stepper__step:first-child::before { display: none; }
+  .stepper__dot {
+    position: relative; z-index: 1;
+    display: grid; place-items: center;
+    width: 1.75rem; height: 1.75rem; border-radius: 50%;
+    font-family: var(--font-heading); font-weight: 700; font-size: 0.8125rem;
+    background: var(--color-soft-cream); border: 2px solid var(--color-dusty-blue); color: var(--color-text-muted);
+  }
+  .stepper__dot .icon { width: 0.875rem; height: 0.875rem; }
+  .stepper__step--done .stepper__dot { background: var(--color-deep-teal); border-color: var(--color-deep-teal); color: var(--color-white); }
+  .stepper__step--current .stepper__dot { background: var(--color-terracotta); border-color: var(--color-terracotta); color: var(--color-charcoal); box-shadow: 0 0 0 5px var(--color-terracotta-tint); }
+  .stepper__label { display: block; font-size: var(--text-caption); font-weight: 500; color: var(--color-text-muted); }
+  .stepper__step--done .stepper__label { color: var(--color-charcoal); }
+  .stepper__step--current .stepper__label { color: var(--color-charcoal); font-weight: 600; }
+}

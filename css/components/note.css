@@ -1,0 +1,15 @@
+/* Block: note (comfort reminder and missing-data message) */
+.note {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  border-radius: 1.125rem;
+  background: var(--color-terracotta-tint);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  max-width: none;
+}
+.note .icon { color: var(--color-deep-terracotta); margin-top: 0.1rem; }
+.note--info { background: var(--color-white); box-shadow: var(--shadow-soft); max-width: 40rem; margin: var(--space-6) auto; padding: var(--space-4); flex-direction: column; align-items: center; text-align: center; }
+.note--info p { color: var(--color-text-muted); }

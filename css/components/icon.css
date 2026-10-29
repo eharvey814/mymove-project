@@ -1,0 +1,37 @@
+/* Block: icon (line icons from assets/icons.svg; color follows currentColor) */
+.icon { width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
+.icon--sm { width: 1.125rem; height: 1.125rem; }
+.icon--lg { width: 1.75rem; height: 1.75rem; }
+
+/* Icon inside a colored circle */
+.icon-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--color-dusty-blue);
+  color: var(--color-charcoal);
+  flex-shrink: 0;
+}
+.icon-badge--sm { width: 2.75rem; height: 2.75rem; }
+.icon-badge--sm .icon { width: 1.25rem; height: 1.25rem; }
+.icon-badge--tint { background: var(--color-blue-tint); color: var(--color-deep-teal); }
+.icon-badge--terracotta { background: var(--color-terracotta); }
+.icon-badge--teal { background: var(--color-deep-teal); color: var(--color-soft-cream); }
+
+/* Numbered circle */
+.num {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  background: var(--color-terracotta);
+  color: var(--color-charcoal);
+}
+.num--blue { background: var(--color-dusty-blue); }
+.num--dark { background: var(--color-charcoal); color: var(--color-soft-cream); }
+.num--teal { background: var(--color-deep-teal); color: var(--color-soft-cream); }

@@ -1,0 +1,18 @@
+/* Light reset so every browser starts from the same place */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body { min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+:where(ul[class], ol[class]) { list-style: none; padding: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--color-deep-teal); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Respect the hidden attribute even on elements that set their own display */
+[hidden] { display: none !important; }
