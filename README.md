@@ -48,4 +48,4 @@ css/
   Drag the timer ring (or use the arrow keys on it) to rewind or skip ahead.
 
 ## Assets
-Logo, submarks, favicon, and a line-icon sprite (`assets/icons.svg`) are SVG. Exercise animations are illustrated in the MYMOVE brand style. Photography: N. Voitkevich via Pexels (placeholder, to be replaced with varied images).
+Logo, submarks, favicon, and a line-icon sprite (`assets/icons.svg`) are SVG. Exercise animations are illustrated in the MYMOVE brand style. Photography: via Pexels
