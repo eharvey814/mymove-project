@@ -104,3 +104,25 @@
   .media__start { left: 0.75rem; bottom: 0.75rem; padding: 0.45rem 0.8rem; font-size: 0.75rem; }
   .media__start .icon { width: 0.875rem; height: 0.875rem; }
 }
+
+/* Phones: the step label, rep count, and countdown sit in a bar above the animation,
+   so they never cover the figure or the on-screen directions (like the box breathing guide) */
+@media (max-width: 699px) {
+  .media__video {
+    aspect-ratio: auto; place-items: normal; align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto auto; gap: 0.4rem;
+    padding: 0.6rem 0.6rem 0;
+  }
+  .media__label, .media__count, .media__countdown { position: static; }
+  .media__label { grid-column: 1; grid-row: 1; justify-self: start; max-width: 100%; min-width: 0; }
+  .media__count { grid-column: 2; grid-row: 1; }
+  .media__countdown {
+    grid-column: 3; grid-row: 1; display: inline-flex; align-items: baseline; gap: 0.3rem;
+    min-width: 0; padding: 0.3rem 0.65rem; border-radius: var(--radius-pill); box-shadow: none;
+  }
+  .media__countdown-num { font-size: 1rem; }
+  .media__gif {
+    position: relative; inset: auto; grid-column: 1 / -1; grid-row: 2;
+    width: calc(100% + 1.2rem); height: auto; aspect-ratio: 16 / 9; margin: 0 -0.6rem;
+  }
+}

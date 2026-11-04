@@ -226,8 +226,8 @@ const ANIMS = {
     "cycle": 1.4
   },
   "walk-look": {
-    "frames": 34,
-    "cycle": 2.8
+    "frames": 67,
+    "cycle": 5.6
   },
   "walk-slow": {
     "frames": 24,

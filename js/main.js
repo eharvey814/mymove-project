@@ -85,8 +85,8 @@ const moves = [
     photo: "hallway-walk.jpg", photoAlt: "Two coworkers talking as they walk down an office hallway", photoPosition: "56% 50%",
     description: "Laps around the building with a few easy stretches.",
     steps: ["Walk lap(s) of your floor or building", "Take the stairs one flight (no stairs? Keep walking at a faster pace)",
-            "Doorway chest stretch", "Standing quad stretch, each side", "Upper back stretch"],
-    gifs: ["walk-easy", "stairs-up", "doorway-stretch", "quad-stretch", "upper-back-stretch"],
+            "Standing side stretch, one arm at a time", "Standing quad stretch, each side", "Upper back stretch"],
+    gifs: ["walk-easy", "stairs-up", "side-bend", "quad-stretch", "upper-back-stretch"],
     timing: [null, null, null, { sides: 2 }, null] },
   { id: 12, title: "Stretch & Breathe", level: "Easy", moods: ["stressed"], places: ["gym"],
     photo: "stretch-and-breathe.jpg", photoAlt: "Woman lying on a yoga mat with her eyes closed, breathing slowly", photoPosition: "46% 50%",
@@ -120,7 +120,7 @@ const ANIM_LABELS = {
 };
 
 /* Bump this number whenever the animations change, so browsers load the new versions instead of cached ones */
-const ASSET_VERSION = "12";
+const ASSET_VERSION = "13";
 
 /* How the data works for each move:
    photo  = the move's photo in assets/images/moves/ (shown on Here's Your Move), photoAlt = its description
