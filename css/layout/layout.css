@@ -41,3 +41,9 @@
   .split { gap: var(--space-8); }
 }
 .section--flush-top { padding-top: 0; }
+
+/* Pages filled in by JavaScript (Here's Your Move, Movement, Nice Work) reserve the full screen height,
+   so the footer starts out of view and nothing jumps when the content appears (prevents layout shift) */
+[data-page="suggestion"] .page,
+[data-page="activity"] .page,
+[data-page="completion"] .page { min-height: 100vh; }

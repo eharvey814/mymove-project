@@ -131,6 +131,9 @@ p { max-width: 65ch; }
   .split { gap: var(--space-8); }
 }
 .section--flush-top { padding-top: 0; }
+[data-page="suggestion"] .page,
+[data-page="activity"] .page,
+[data-page="completion"] .page { min-height: 100vh; }
 .button {
   display: inline-flex;
   align-items: center;
