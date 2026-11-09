@@ -31,3 +31,21 @@
 .flow-step { display: grid; gap: var(--space-2); align-content: start; }
 .flow-step__top { display: flex; justify-content: space-between; align-items: center; }
 .flow-step__top .icon { color: var(--color-deep-teal); }
+
+/* Step 1: "See the questions" opens to show the three questions and their options */
+.flow-step__more { margin-top: var(--space-2); }
+.flow-step__more summary {
+  display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+  font-weight: 600; font-size: 0.9375rem; color: var(--color-deep-teal); list-style: none;
+}
+.flow-step__more summary::-webkit-details-marker { display: none; }
+.flow-step__more summary::after {
+  content: ""; width: 0.45rem; height: 0.45rem; margin-top: -0.2rem;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: rotate(45deg); transition: transform 0.2s;
+}
+.flow-step__more[open] summary::after { transform: rotate(-135deg); margin-top: 0.2rem; }
+.flow-step__more summary:hover { text-decoration: underline; }
+.flow-step__questions { display: grid; gap: 0.6rem; margin-top: var(--space-2); }
+.flow-step__questions dt { font-weight: 600; font-size: 0.875rem; }
+.flow-step__questions dd { font-size: 0.875rem; color: var(--color-text-muted); }
