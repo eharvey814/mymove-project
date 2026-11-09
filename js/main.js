@@ -120,7 +120,7 @@ const ANIM_LABELS = {
 };
 
 /* Bump this number whenever the animations change, so browsers load the new versions instead of cached ones */
-const ASSET_VERSION = "13";
+const ASSET_VERSION = "14";
 
 /* How the data works for each move:
    photo  = the move's photo in assets/images/moves/ (shown on Here's Your Move), photoAlt = its description
@@ -148,8 +148,24 @@ const moodLabels = { "low-energy": "Low energy", stressed: "Stressed", energized
 /* ---------- 2. Helpers ---------- */
 function saveData(key, value) { sessionStorage.setItem(key, JSON.stringify(value)); }
 function loadData(key) {
-  const text = sessionStorage.getItem(key);
-  return text ? JSON.parse(text) : null;
+  try {
+    const text = sessionStorage.getItem(key);
+    return text ? JSON.parse(text) : null;
+  } catch (error) {
+    return null; // damaged saved data is treated as missing
+  }
+}
+/* Only accept answers the app actually offers (guards against old or hand-edited saved data) */
+const TIME_OPTIONS = [5, 10, 15, 30];
+function loadPreferences() {
+  const prefs = loadData("preferences");
+  if (!prefs || !TIME_OPTIONS.includes(Number(prefs.time)) || !moodLabels[prefs.mood] || !placeLabels[prefs.place]) return null;
+  return { time: Number(prefs.time), mood: prefs.mood, place: prefs.place };
+}
+/* The saved move must be one of the app's moves; always use the latest version of it */
+function loadCurrentMove() {
+  const saved = loadData("currentMove");
+  return (saved && moves.find(m => m.id === saved.id)) || null;
 }
 function formatTime(totalSeconds) {
   const m = Math.floor(totalSeconds / 60);
@@ -202,7 +218,7 @@ function initNav() {
 
 /* ---------- 4. Tell Us About You ---------- */
 function initPreferencesPage() {
-  const saved = loadData("preferences") || {};
+  const saved = loadPreferences() || {};
   const choices = { time: saved.time || null, mood: saved.mood || null, place: saved.place || null };
   const error = document.getElementById("formError");
   const done = document.getElementById("allAnswered");
@@ -253,8 +269,8 @@ function showMovePhoto(move) {
 }
 
 function initSuggestionPage() {
-  const prefs = loadData("preferences");
-  let move = loadData("currentMove");
+  const prefs = loadPreferences();
+  let move = loadCurrentMove();
   if (!prefs || !move) { show(document.getElementById("missingData")); return; }
 
   function render() {
@@ -373,12 +389,11 @@ function buildSchedule(move, totalSeconds) {
 }
 
 function initActivityPage() {
-  const prefs = loadData("preferences");
-  const saved = loadData("currentMove");
+  const prefs = loadPreferences();
+  const saved = loadCurrentMove();
   if (!prefs || !saved) { show(document.getElementById("missingData")); return; }
-  // Use the latest move data, so a move saved earlier in the session gets current animations and timing
-  const prefsTime = prefs.time;
-  const move = planMove(moves.find(m => m.id === saved.id) || saved, prefsTime);
+  // Keep only the movements that fit the time chosen
+  const move = planMove(saved, prefs.time);
   show(document.getElementById("activity"));
   document.getElementById("activityTitle").textContent = move.title;
 
@@ -528,9 +543,14 @@ function initActivityPage() {
   document.getElementById("resetTimer").addEventListener("click", reset);
   document.getElementById("panelStart").addEventListener("click", start);
   // There are two End Move buttons: one under the timer (desktop) and one after the steps (phones/tablets)
+  let ended = false;
   document.querySelectorAll('[data-action="end-move"]').forEach(button => {
     button.addEventListener("click", () => {
+      if (ended) return; // a double-click saves the session only once
       const moved = Math.floor(now() / 1000);
+      if (moved < 1) { message.textContent = "Press Start to begin your move first."; return; }
+      ended = true;
+      document.querySelectorAll('[data-action="end-move"]').forEach(b => { b.disabled = true; });
       runningSince = null;
       const history = loadData("history") || [];
       history.push({ title: move.title, secondsMoved: moved, level: move.level, place: prefs.place, rating: null });
@@ -626,6 +646,9 @@ function setupAnimation() {
       const info = state === "ready" ? { name: seg.anims[0], phase: 0, rep: 0, side: 0, mirror: null } : frameInfo(seg, local);
       drawFrame(info.name, info.phase, info.mirror);
       canvas.hidden = false;
+      // Screen readers hear which step the figure is showing
+      const description = `Animated figure demonstrating: ${seg.text}`;
+      if (canvas.getAttribute("aria-label") !== description) canvas.setAttribute("aria-label", description);
 
       const prefix = { ready: "UP FIRST", running: "NOW", paused: "PAUSED", done: "DONE" }[state];
       label.textContent = `${prefix} · ${seg.text}`;
@@ -660,8 +683,11 @@ function setupAnimation() {
 
 /* ---------- 7. Nice Work ---------- */
 function initCompletionPage() {
-  const history = loadData("history");
-  if (!history || history.length === 0) { show(document.getElementById("missingData")); return; }
+  const saved = loadData("history");
+  const history = Array.isArray(saved)
+    ? saved.filter(s => s && typeof s.title === "string" && Number.isFinite(s.secondsMoved) && placeLabels[s.place])
+    : [];
+  if (history.length === 0) { show(document.getElementById("missingData")); return; }
   const latest = history[history.length - 1];
   show(document.getElementById("summary"));
   document.getElementById("summaryTitle").textContent = latest.title;

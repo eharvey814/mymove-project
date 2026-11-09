@@ -19,3 +19,9 @@
   .feel { grid-template-columns: 1fr auto; align-items: center; }
   .feel .option-group { grid-template-columns: repeat(3, 8.25rem); }
 }
+
+/* Let every column shrink on very narrow phones (320 px), so nothing spills past the screen edge */
+.completion > * { min-width: 0; }
+@media (max-width: 359px) {
+  .completion .button--large { white-space: normal; padding-left: 1rem; padding-right: 1rem; }
+}

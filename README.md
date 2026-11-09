@@ -49,3 +49,12 @@ css/
 
 ## Assets
 Logo, submarks, favicon, and a line-icon sprite (`assets/icons.svg`) are SVG. Exercise animations are illustrated in the MYMOVE brand style. Photography: N. Voitkevich via Pexels (placeholder, to be replaced with varied images).
+
+## Performance
+- Pages load one combined stylesheet, `css/styles.css`, built from the files listed in `css/main.css`.
+  After editing any CSS file, open `tools/build-css.html` with Live Server, click the button, and save the
+  download over `css/styles.css`.
+- Fonts load without blocking the first paint. Photos are compressed (about 1000 px), the home photo has a
+  smaller version for phones, and the Here's Your Move photo starts loading before the rest of the page.
+- Activity photos: keep each one under about 150 KB. Pexels' "Medium" download, resized to about 1000 px wide,
+  works well.

@@ -7,6 +7,8 @@
      components/  reusable blocks named with BEM (.block__element--modifier)
      pages/       small, page-specific arrangements of components
      utilities/   single-purpose helpers (loaded last so they win)
+   The pages load css/styles.css: every file below combined into one, so pages appear faster.
+   After editing any CSS file, rebuild it with tools/build-css.html (open it with Live Server).
    To add a page: create pages/<page>.css and import it below.
    To add a component: create components/<component>.css and import it below.
    Mobile first: base styles target phones, then
