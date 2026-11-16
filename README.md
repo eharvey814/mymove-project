@@ -58,3 +58,8 @@ Logo, submarks, favicon, and a line-icon sprite (`assets/icons.svg`) are SVG. Ex
   smaller version for phones, and the Here's Your Move photo starts loading before the rest of the page.
 - Activity photos: keep each one under about 150 KB. Pexels' "Medium" download, resized to about 1000 px wide,
   works well.
+
+## Optional intensity question
+- Tell Us About You has an optional fourth question, "How hard do you want to work?" (Any, Easy, Moderate, Challenging; Any by default).
+- Matching steps down when nothing fits exactly: (1) all answers, (2) same place and intensity, any mood,
+  (3) nearest level for your mood and place. Here's Your Move explains when it used a closer match.

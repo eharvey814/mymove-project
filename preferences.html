@@ -42,7 +42,7 @@
       </nav>
       <header class="page-title">
         <h1>Tell us about you.</h1>
-        <p>Three quick questions.<span class="u-hide-mobile"> We’ll handle the rest.</span></p>
+        <p>Three quick questions, plus one optional.<span class="u-hide-mobile"> We’ll handle the rest.</span></p>
       </header>
       <div class="grid grid--3">
           <section class="card card--shadow question" aria-labelledby="q-time">
@@ -85,6 +85,20 @@
             </div>
           </section>
       </div>
+      <section class="card card--shadow question question--optional mt-3" aria-labelledby="q-intensity">
+        <div class="question__head">
+          <span class="icon-badge question__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#level"></use></svg></span>
+          <h2 class="question__title" id="q-intensity">How hard do you want to work?</h2>
+          <span class="card__index question__index">Optional</span>
+        </div>
+        <p class="question__hint">Leave it on Any and we’ll suggest the best fit for your moment.</p>
+        <div class="option-group" data-group="intensity" role="group" aria-labelledby="q-intensity">
+              <button type="button" class="option" data-value="any" aria-pressed="true"><span>Any</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="easy" aria-pressed="false"><span>Easy</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="moderate" aria-pressed="false"><span>Moderate</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+              <button type="button" class="option" data-value="challenging" aria-pressed="false"><span>Challenging</span><span class="option__check"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check"></use></svg></span></button>
+        </div>
+      </section>
       <div class="card card--shadow summary-bar">
         <div>
           <p class="summary-bar__label">Your moment</p>
@@ -92,6 +106,7 @@
             <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-summary="time">Time</span></li>
             <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#smile"></use></svg><span data-summary="mood">Feeling</span></li>
             <li class="chip chip--info"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#pin"></use></svg><span data-summary="place">Place</span></li>
+            <li class="chip chip--info is-hidden" id="intensityChip"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#level"></use></svg><span data-summary="intensity">Any</span></li>
           </ul>
         </div>
         <p class="summary-bar__text" id="summaryText" aria-hidden="true">Answer all three questions</p>

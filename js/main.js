@@ -120,7 +120,7 @@ const ANIM_LABELS = {
 };
 
 /* Bump this number whenever the animations change, so browsers load the new versions instead of cached ones */
-const ASSET_VERSION = "16";
+const ASSET_VERSION = "17";
 
 /* How the data works for each move:
    photo  = the move's photo in assets/images/moves/ (shown on Here's Your Move), photoAlt = its description
@@ -144,6 +144,9 @@ const ASSET_VERSION = "16";
 
 const placeLabels = { home: "Home", outside: "Outside", work: "Work/School", gym: "Gym" };
 const moodLabels = { "low-energy": "Low energy", stressed: "Stressed", energized: "Energized", motivated: "Motivated" };
+/* Optional intensity question. "any" means no preference. */
+const intensityLabels = { any: "Any", easy: "Easy", moderate: "Moderate", challenging: "Challenging" };
+const LEVEL_ORDER = ["easy", "moderate", "challenging"];
 
 /* ---------- 2. Helpers ---------- */
 function saveData(key, value) { sessionStorage.setItem(key, JSON.stringify(value)); }
@@ -160,7 +163,8 @@ const TIME_OPTIONS = [5, 10, 15, 30];
 function loadPreferences() {
   const prefs = loadData("preferences");
   if (!prefs || !TIME_OPTIONS.includes(Number(prefs.time)) || !moodLabels[prefs.mood] || !placeLabels[prefs.place]) return null;
-  return { time: Number(prefs.time), mood: prefs.mood, place: prefs.place };
+  const intensity = intensityLabels[prefs.intensity] ? prefs.intensity : "any"; // older saved answers have no intensity
+  return { time: Number(prefs.time), mood: prefs.mood, place: prefs.place, intensity };
 }
 /* The saved move must be one of the app's moves; always use the latest version of it */
 function loadCurrentMove() {
@@ -176,6 +180,25 @@ function findMatches(mood, place) {
   let matches = moves.filter(m => m.moods.includes(mood) && m.places.includes(place));
   if (matches.length === 0) matches = moves.filter(m => m.moods.includes(mood));
   return matches;
+}
+/* Matching with the optional intensity answer. With only 14 moves, some combinations have no exact
+   match, so the app steps down and explains what it did:
+   1. every answer matches   2. place and intensity match (any mood)   3. nearest level for your mood and place */
+function findMatchesFor(prefs) {
+  const base = findMatches(prefs.mood, prefs.place);
+  const want = prefs.intensity || "any";
+  if (want === "any") return { list: base, note: "" };
+  const levelOf = m => m.level.toLowerCase();
+  const exact = base.filter(m => levelOf(m) === want);
+  if (exact.length) return { list: exact, note: "" };
+  const label = intensityLabels[want];
+  const samePlace = moves.filter(m => m.places.includes(prefs.place) && levelOf(m) === want);
+  if (samePlace.length) {
+    return { list: samePlace, note: `None of the ${moodLabels[prefs.mood].toLowerCase()} moves are ${label.toLowerCase()}, so here’s a ${label.toLowerCase()} move for ${placeLabels[prefs.place].toLowerCase()}.` };
+  }
+  const distance = m => Math.abs(LEVEL_ORDER.indexOf(levelOf(m)) - LEVEL_ORDER.indexOf(want));
+  const nearest = Math.min(...base.map(distance));
+  return { list: base.filter(m => distance(m) === nearest), note: `No ${label.toLowerCase()} moves fit your answers, so here’s the closest match.` };
 }
 function pickRandom(list, skipId) {
   const choices = list.filter(m => m.id !== skipId);
@@ -219,7 +242,7 @@ function initNav() {
 /* ---------- 4. Tell Us About You ---------- */
 function initPreferencesPage() {
   const saved = loadPreferences() || {};
-  const choices = { time: saved.time || null, mood: saved.mood || null, place: saved.place || null };
+  const choices = { time: saved.time || null, mood: saved.mood || null, place: saved.place || null, intensity: saved.intensity || "any" };
   const error = document.getElementById("formError");
   const done = document.getElementById("allAnswered");
 
@@ -227,18 +250,23 @@ function initPreferencesPage() {
     document.querySelector('[data-summary="time"]').textContent = choices.time ? choices.time + " min" : "Time";
     document.querySelector('[data-summary="mood"]').textContent = choices.mood ? moodLabels[choices.mood] : "Feeling";
     document.querySelector('[data-summary="place"]').textContent = choices.place ? placeLabels[choices.place] : "Place";
+    document.querySelector('[data-summary="intensity"]').textContent = intensityLabels[choices.intensity];
+    document.getElementById("intensityChip").classList.toggle("is-hidden", choices.intensity === "any");
     const complete = choices.time && choices.mood && choices.place;
     complete ? show(done) : hide(done);
     if (complete) error.textContent = "";
     const line = document.getElementById("summaryText");
-    const parts = [choices.time && choices.time + " min", choices.mood && moodLabels[choices.mood], choices.place && placeLabels[choices.place]].filter(Boolean);
-    line.textContent = parts.length ? parts.join(" · ") : "Answer all three questions";
+    const parts = [choices.time && choices.time + " min", choices.mood && moodLabels[choices.mood], choices.place && placeLabels[choices.place],
+                   choices.intensity !== "any" && intensityLabels[choices.intensity]].filter(Boolean);
+    const answeredAny = choices.time || choices.mood || choices.place;
+    line.textContent = answeredAny ? parts.join(" · ") : "Answer all three questions";
     line.classList.toggle("is-complete", Boolean(complete));
   }
 
   setupOptionGroup("time", v => { choices.time = Number(v); updateSummary(); }, choices.time);
   setupOptionGroup("mood", v => { choices.mood = v; updateSummary(); }, choices.mood);
   setupOptionGroup("place", v => { choices.place = v; updateSummary(); }, choices.place);
+  setupOptionGroup("intensity", v => { choices.intensity = v; updateSummary(); }, choices.intensity);
   updateSummary();
 
   document.getElementById("findMove").addEventListener("click", () => {
@@ -247,7 +275,7 @@ function initPreferencesPage() {
       return;
     }
     saveData("preferences", choices);
-    saveData("currentMove", pickRandom(findMatches(choices.mood, choices.place)));
+    saveData("currentMove", pickRandom(findMatchesFor(choices).list));
     window.location.href = "suggestion.html";
   });
 }
@@ -291,16 +319,19 @@ function initSuggestionPage() {
       list.appendChild(li);
     });
   }
+  const matched = findMatchesFor(prefs);
+  const message = document.getElementById("suggestionMessage");
+  message.textContent = matched.note;
   document.getElementById("matchText").textContent =
-    `${prefs.time} min · ${moodLabels[prefs.mood]} · ${placeLabels[prefs.place]}`;
+    `${prefs.time} min · ${moodLabels[prefs.mood]} · ${placeLabels[prefs.place]}` +
+    (prefs.intensity !== "any" ? ` · ${intensityLabels[prefs.intensity]}` : "");
   render();
   show(document.getElementById("suggestion"));
 
   document.getElementById("tryAnother").addEventListener("click", () => {
-    const next = pickRandom(findMatches(prefs.mood, prefs.place), move.id);
-    const message = document.getElementById("suggestionMessage");
+    const next = pickRandom(matched.list, move.id);
     if (!next) { message.textContent = "This is the only move that matches your answers."; return; }
-    message.textContent = "";
+    message.textContent = matched.note;
     move = next;
     saveData("currentMove", move);
     render();
