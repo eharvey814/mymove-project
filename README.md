@@ -1,65 +1,113 @@
 # MYMOVE
 
-**Movement That Fits The Moment.** MYMOVE suggests quick, simple movement based on how much time you have, how you feel, and where you are.
+**Movement That Fits The Moment.**
 
-Live site: https://eharvey814.github.io/mymove-project/
+**Live site:** https://eharvey814.github.io/mymove-project/
 
-## Pages
-| Page | File |
-|---|---|
-| Home | `index.html` |
-| Tell Us About You | `preferences.html` |
-| Here's Your Move | `suggestion.html` |
-| Movement (timer) | `activity.html` |
-| Nice Work | `completion.html` |
-| How It Works / About / Contact | `how-it-works.html`, `about.html`, `contact.html` |
+MYMOVE is a web app that helps people fit quick, approachable movement into their day. Many people want to be more active but don't know where to start or feel like they don't have enough time. MYMOVE takes the guesswork out of deciding what to do: answer a few quick questions, get one movement suggestion that fits your moment, and follow along with an illustrated guide.
 
-## CSS organization
-Styles follow a layered folder structure with **BEM** class names (`.block__element--modifier`).
+Created by Erika Harvey for the MMC6936 Capstone Project.
 
-```
+## Goals
+
+- **Make movement approachable.** Every activity uses simple, low-impact motions and no equipment, so beginners can follow along.
+- **Fit real life.** Suggestions match the time you have, how you feel, and where you are: home, outside, work or school, or the gym.
+- **Encourage, never intimidate.** A calm brand, a friendly tone, and the reminder that even small steps can make a difference.
+
+## Features
+
+- **Three quick questions, plus one optional:** time (5, 10, 15, or 30 minutes), mood, place, and an optional intensity (Any, Easy, Moderate, Challenging).
+- **14 activities** with their own photos, step lists, and levels. **Try Another** suggests a different match.
+- **Illustrated step-by-step guide:** an animated figure demonstrates each step in time with the timer. It counts reps, switches sides, and shows a countdown for timed steps like a 20-second plank.
+- **Timer that fits your time:** the number of movements adjusts to the minutes you choose, and every session ends on its last movement exactly at 0:00. Start, pause, reset, or drag the timer ring to rewind or skip ahead.
+- **Nice Work summary:** see your time, level, and place, rate how the move felt, and view your moves from this session.
+- **Responsive and accessible:** designed mobile-first for phones, tablets, and desktops, with keyboard support and screen reader labels.
+
+## How to use it
+
+1. Open the live site and select **Find My Move** (or **Get Started**).
+2. Answer the three questions, and the optional intensity question if you like.
+3. Review your suggested move, or select **Try Another**.
+4. Select **Let's Go**, then **Start**, and follow the guide.
+5. Select **End Move** when you're done, and rate how it felt.
+
+## Running it locally
+
+MYMOVE is plain HTML, CSS, and JavaScript, so there is nothing to install or build.
+
+1. Clone the repository:git clone https://github.com/eharvey814/mymove-project.git
+2. Open the folder in Visual Studio Code.
+3. Right-click `index.html` and choose **Open with Live Server** (requires the Live Server extension).
+
+Use Live Server rather than opening the file directly, because the pages load their animations and styles from other files.
+
+## Project structure
+
+index.html Home
+preferences.html Tell Us About You (the questions)
+suggestion.html Here’s Your Move
+activity.html Movement (animated guide and timer)
+completion.html Nice Work
+how-it-works.html How It Works
+about.html About
+contact.html Contact
 css/
-  main.css          ← the only file linked from HTML; imports everything in order
-  base/             tokens.css (brand colors, type, spacing), reset.css, typography.css
-  layout/           layout.css (containers, sections, grids, split layouts)
-  components/       one file per reusable block: button, chip, card, stepper, timer, ...
-  pages/            small page-specific arrangements of components
-  utilities/        single-purpose helpers, loaded last
-```
+styles.css the combined stylesheet the pages load (generated; do not edit directly)
+main.css the list of source CSS files, in order
+base/ layout/ components/ pages/ utilities/ the organized source CSS files (BEM class names)
+js/
+main.js all app logic and the 14 activities
+animations.js frame counts and timing for each animation
+assets/
+moves/ animation frame sheets (.webp), one per movement
+images/ photos (moves/ holds one photo per activity)
+icons.svg, logo.svg, submark.svg, favicon.svg
+tools/
+build-css.html rebuilds css/styles.css after CSS edits
 
-- **Design tokens** in `base/tokens.css` hold every brand value (Dusty Blue, Terracotta, Soft Cream, Charcoal, Deep Teal, Deep Terracotta; Roboto + Montserrat), so changes happen in one place.
-- **Mobile first:** base styles target phones, then `@media (min-width: 700px)` for tablet and `@media (min-width: 1100px)` for desktop.
-- **State classes** use an `is-` prefix (`is-open`, `is-hidden`, `is-active`) and are toggled by JavaScript.
-- **Adding a page:** create `css/pages/<page>.css` and add one `@import` line to `main.css`.
-- **Adding a component:** create `css/components/<name>.css` with BEM classes and import it.
 
-## JavaScript
-`js/main.js` is shared by every page. Each `<body>` has a `data-page` attribute, and only that page's code runs. Data passes between pages with `sessionStorage`.
+## Contributing
 
-### Step animations and timing
-- Each move lists its `steps`, the animation for each step (`gifs`), and optional `timing`:
-  `{ reps: 10 }` plays exactly 10 reps, `{ seconds: 20 }` lasts 20 seconds, and `{ sides: 2 }` splits a step between both sides.
-  Steps without a fixed count share the remaining time. `repeat: true` runs circuits in rounds.
-- Animations are frame sheets in `assets/moves/` (described in `js/animations.js`). The Movement page draws the frame for the
-  exact elapsed time, so reps match the timer, nothing moves before Start, and Pause freezes the figure.
-- When the minutes chosen equal the number of steps, every step lasts exactly one minute and counted reps are spread
-  evenly across that minute. `{ rotate: 30 }` switches between several animations every 30 seconds (Dance Break).
-- The timer is based on the system clock, so it stays accurate even if the browser slows a background tab.
-  Drag the timer ring (or use the arrow keys on it) to rewind or skip ahead.
+Suggestions and improvements are welcome. Please open an issue to share an idea or report a bug, or fork the repository and open a pull request.
 
-## Assets
-Logo, submarks, favicon, and a line-icon sprite (`assets/icons.svg`) are SVG. Exercise animations are illustrated in the MYMOVE brand style. Photography: N. Voitkevich via Pexels (placeholder, to be replaced with varied images).
+**Editing styles**
+1. Edit the source file in `css/base`, `css/layout`, `css/components`, `css/pages`, or `css/utilities`.
+2. Open `tools/build-css.html` with Live Server and select **Build and download styles.css**.
+3. Save the download over `css/styles.css`. Your changes won't appear on the site until you do this.
 
-## Performance
-- Pages load one combined stylesheet, `css/styles.css`, built from the files listed in `css/main.css`.
-  After editing any CSS file, open `tools/build-css.html` with Live Server, click the button, and save the
-  download over `css/styles.css`.
-- Fonts load without blocking the first paint. Photos are compressed (about 1000 px), the home photo has a
-  smaller version for phones, and the Here's Your Move photo starts loading before the rest of the page.
-- Activity photos: keep each one under about 150 KB. Pexels' "Medium" download, resized to about 1000 px wide,
-  works well.
+Brand colors, fonts, and spacing live in `css/base/tokens.css`, so they can be changed in one place.
 
-## Optional intensity question
-- Tell Us About You has an optional fourth question, "How hard do you want to work?" (Any, Easy, Moderate, Challenging; Any by default).
-- Matching steps down when nothing fits exactly: (1) all answers, (2) same place and intensity, any mood,
-  (3) nearest level for your mood and place. Here's Your Move explains when it used a closer match.
+**Adding or changing an activity**
+- Each activity is an entry in the `moves` list at the top of `js/main.js`, with its title, level, moods, places, steps, animations (`gifs`, one per step), and photo.
+- Optional `timing` sets exact counts or lengths for a step: `{ reps: 10 }` plays 10 reps, `{ seconds: 20 }` lasts 20 seconds and shows a countdown, and `{ sides: 2 }` splits a step between both sides.
+- Animations must already exist in `assets/moves` and be listed in `js/animations.js`.
+- Keep activity photos about 1000 pixels wide and under about 150 KB so pages load quickly.
+
+**After any change**
+- Increase the `ASSET_VERSION` number near the top of `js/main.js`, so browsers load the new files instead of old saved copies.
+- Test the full flow on a phone-sized screen and a desktop before pushing.
+
+## Testing
+
+- **Lighthouse (mobile):** Accessibility, Best Practices, and SEO score 90–100. Performance scores in the 90s on most pages. The Movement page scores lower because it loads the step animations, which are a key feature.
+- **Manual testing:** every user flow was tested, along with attempts to break the app, such as skipping questions, opening pages out of order, double-clicking buttons, using only the keyboard, and very small screens.
+
+## Data and privacy
+
+MYMOVE has no accounts and no database. Your answers and session history are saved only in your browser for the current session and are cleared when you close it.
+
+## Credits
+
+- Activity and page photos: [Pexels](https://www.pexels.com) (free to use).
+- Fonts: Roboto and Montserrat via [Google Fonts](https://fonts.google.com).
+- Exercise animations and brand identity: created for MYMOVE in the MYMOVE brand style.
+
+## Disclaimer
+
+MYMOVE offers general movement ideas, not medical advice. Listen to your body, move within your comfort level, and check with a healthcare provider if you have health concerns.
+
+## Future plans
+
+- More activities and routines.
+- A way to note physical limitations and get suggestions that avoid certain movements.
+- Progress tracking across sessions.

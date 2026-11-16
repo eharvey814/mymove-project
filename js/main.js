@@ -90,7 +90,7 @@ const moves = [
     timing: [null, null, null, { sides: 2 }, null] },
   { id: 12, title: "Stretch & Breathe", level: "Easy", moods: ["stressed"], places: ["gym"],
     photo: "stretch-and-breathe.jpg", photoAlt: "Woman lying on a yoga mat with her eyes closed, breathing slowly", photoPosition: "46% 50%",
-    description: "Use a mat and a quiet corner to stretch and slow your breathing.",
+    description: "Use a soft mat and a quiet corner to stretch and slow your breathing.",
     steps: ["Lie on your back and breathe slowly", "Knee-to-chest hold, each side", "Supine twist, each side", "Hamstring stretch, each side"],
     gifs: ["lie-and-breathe", "knee-to-chest", "supine-twist", "hamstring-stretch"],
     timing: [null, { sides: 2 }, { sides: 2 }, { sides: 2 }] },
